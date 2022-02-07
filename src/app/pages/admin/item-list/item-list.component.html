@@ -1,8 +1,70 @@
-<p>item-list works!</p>
-<ul *ngFor="let item of list$ |async">
-  <li>{{item.name}}</li>
-  <button (click)="delete(item)">Delete</button>
-</ul>
-<button (click)="create()">
-  Create Test Item
-</button>
+<div class="container">
+
+  <div fxLayout="row wrap" fxLayoutAlign="center">
+    <mat-form-field fxFlex="100" fxLayout="row" class="search-area">
+      <mat-label class="search-label">Keresés</mat-label>
+      <input
+        matInput
+        class="search-input"
+        type="text"
+        (keyup)="applyFilter($event)"
+      />
+    </mat-form-field>
+    <button
+      fxFlex="100"
+      fxFlex.gt-xs="95"
+      mat-flat-button
+      class="add-btn"
+      (click)="openDialog(item, 'edit')"
+    >
+      Létrehozás
+    </button>
+    <table
+      fxFlex="100"
+      fxFlex.gt-xs="95"
+      class="table"
+      mat-table
+      [dataSource]="dataSource"
+    >
+      <ng-container [matColumnDef]="col" *ngFor="let col of columns">
+        <th class="table-head" mat-header-cell *matHeaderCellDef>
+          {{ col }}
+        </th>
+        <div *ngIf="col != 'edit'">
+          <td mat-cell class="table-cell" *matCellDef="let item">
+            {{ item[col] }}
+          </td>
+        </div>
+        <div *ngIf="col == 'edit'">
+          <td mat-cell *matCellDef="let item">
+            <button mat-button [matMenuTriggerFor]="edit">
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+            <mat-menu #edit="matMenu">
+              <button mat-menu-item (click)="openDialog(item, 'edit')">
+                <p><mat-icon>edit</mat-icon>Szerkesztés</p>
+              </button>
+              <button mat-menu-item (click)="onDelete(item)">
+                <p><mat-icon>delete</mat-icon>Törlés</p>
+              </button>
+            </mat-menu>
+          </td>
+        </div>
+      </ng-container>
+      <tr class="table-head" mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr
+        class="table-row"
+        mat-row
+        *matRowDef="let itemRow; columns: columns"
+      ></tr>
+    </table>
+    <mat-paginator
+      fxFlex="100"
+      fxFlex.gt-xs="95"
+      class="paginator"
+      #paginator
+      [pageSizeOptions]="[5, 10, 15]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "lato";
+  src: url(../../fonts/Lato/Lato-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "glory";
+  src: url(../../fonts/Glory/Glory-VariableFont_wght.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "ubuntu";
+  src: url(../../fonts/Ubuntu/Ubuntu-Regular.ttf);
+  font-weight: 400;
+}
+
+$nav-font: "lato", Arial, Helvetica, sans-serif;
+$main-font: "glory", Arial, Helvetica, sans-serif;
+$secondary-font: "ubuntu", Arial, Helvetica, sans-serif;
