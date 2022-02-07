@@ -1,0 +1,8 @@
+<p>item-list works!</p>
+<ul *ngFor="let item of list$ |async">
+  <li>{{item.name}}</li>
+  <button (click)="delete(item)">Delete</button>
+</ul>
+<button (click)="create()">
+  Create Test Item
+</button>

@@ -12,7 +12,9 @@ export class ItemService {
   URL: string =
     'https://flyingwhale-625ae-default-rtdb.europe-west1.firebasedatabase.app/items';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getAll()
+  }
 
   getAll(): void {
     this.http
