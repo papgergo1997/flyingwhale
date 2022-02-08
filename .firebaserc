@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "flyingwhale-625ae": {
+      "hosting": {
+        "flyingwhale": [
+          "flyingwhale-625ae"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "flyingwhale-625ae"
+  }
+}

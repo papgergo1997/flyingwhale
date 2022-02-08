@@ -105,6 +105,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "flyingwhale:build:production",
+            "firebaseProject": "flyingwhale-625ae",
+            "firebaseHostingSite": "flyingwhale-625ae"
+          }
         }
       }
     }
