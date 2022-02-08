@@ -16,7 +16,7 @@ import { Photo } from '../model/photo';
   providedIn: 'root',
 })
 export class PhotoUploadService {
-  list$: BehaviorSubject<Photo[]> = new BehaviorSubject<Photo[]>([]);
+  list$: Observable<Photo[]> = new Observable<Photo[]>();
   dbURL =
     'https://flyingwhale-625ae-default-rtdb.europe-west1.firebasedatabase.app/images';
   firebaseApp = initializeApp(environment.firebase);
@@ -76,8 +76,8 @@ export class PhotoUploadService {
       .post<Photo>(`${this.dbURL}.json`, doc)
       .subscribe((resp) => console.log(resp));
   }
-  getImages(): void {
-    this.http.get(`${this.dbURL}.json`)
+  getImages(): Observable<any> {
+   return this.http.get(`${this.dbURL}.json`)
     .pipe(
       map((resp) => {
         const arr = [];
@@ -89,7 +89,6 @@ export class PhotoUploadService {
         return arr;
       })
     )
-    .subscribe((list) => this.list$.next(list));
 
   }
 }

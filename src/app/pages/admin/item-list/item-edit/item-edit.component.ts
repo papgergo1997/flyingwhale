@@ -62,7 +62,9 @@ export class ItemEditComponent implements OnInit {
 
   upload(photo: Photo): void {
     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-      this.phUService.getImages()
+      this.phUService.getImages().subscribe(list=>{
+        this.form.patchValue({image: list[list.length -1].url})
+      })
     );
   }
 

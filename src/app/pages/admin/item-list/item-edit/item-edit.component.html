@@ -52,7 +52,7 @@
 
       <input type="file" (change)="selectFile($event)">
 
-    <img src="{{form.get('image').value}}" alt="{{form.get('image').value}}" >
+    <img src="{{form.get('image').value}}" alt="{{form.get('image').value}}" style="width: 100px;">
     <button mat-button (click)="onUpload()">Upload</button>
     <div fxLayout="row" class="btn-group">
       <button
