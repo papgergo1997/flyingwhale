@@ -1,10 +1,12 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
 import { Item } from 'src/app/model/item';
 import { ItemService } from 'src/app/service/item.service';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 @Component({
   selector: 'app-item-list',
@@ -28,7 +30,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   columns: string[] = ['name', 'category', 'tech', 'image', 'edit'];
 
-  constructor(private iService: ItemService) {}
+  constructor(private iService: ItemService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.list$ = this.iService.list$;
@@ -40,7 +42,13 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   openDialog(doc: any, comp?: 'del' | 'edit'): void {
-    // this.iService.create(doc) FOR TEST ONLY!!!
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = doc;
+    this.dialog.open(ItemEditComponent, dialogConfig)
   }
 
   applyFilter(event: Event):void {
@@ -49,7 +57,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(doc: Item):void {
-   // this.iService.delete(doc) FOR TEST ONLY!!!
+   this.iService.delete(doc)// FOR TEST ONLY!!!
   }
   ngOnDestroy(): void {
       this.subscription.unsubscribe();

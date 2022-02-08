@@ -1,0 +1,67 @@
+<div fxFlex fxLayoutAlign="center center" fxLayout="column" class="container">
+  <h2 mat-dialog-title>Edit</h2>
+
+  <form
+    class="form"
+    fxFlex
+    fxLayoutAlign="center center"
+    fxLayout="column"
+    [formGroup]="form"
+  >
+    <mat-form-field *ngIf="this.form.get('id').value != '0'">
+      <input matInput placeholder="Id" formControlName="id" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" />
+      <!-- <div *ngIf="form.get('address').invalid && !form.pristine">
+        <div class="error-message">
+          {{
+            form.get("address").hasError("required")
+              ? "Cím megadása kötelező"
+              : "Cím túl hosszú"
+          }}
+        </div>
+      </div> -->
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="description" />
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        matInput
+        placeholder="Category"
+        formControlName="category"
+      >
+        <mat-option *ngFor="let opt of categoryOpt" [value]="opt">{{
+          opt
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        matInput
+        placeholder="Technique"
+        formControlName="tech"
+      >
+        <mat-option *ngFor="let opt of techOpt" [value]="opt">{{
+          opt
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <img src="{{form.get('image').value}}" alt="{{form.get('image').value}}" >
+    <div fxLayout="row" class="btn-group">
+      <button
+        [disabled]="form.invalid"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="onSubmit()"
+      >
+        Mentés
+      </button>
+      <button mat-raised-button (click)="close()">Mégse</button>
+    </div>
+  </form>
+</div>
+

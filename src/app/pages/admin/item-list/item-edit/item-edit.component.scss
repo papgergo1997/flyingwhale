@@ -1,0 +1,29 @@
+@import "/src/assets/scss/variables/colors";
+.form {
+  width: 250px;
+}
+.error-message {
+  width: 100%;
+  font-style: italic;
+  font-size: 0.8em;
+  color: $primary-red;
+  overflow: hidden;
+  position: absolute;
+  top: 30px;
+  animation: error 1s 1;
+}
+
+@keyframes error {
+  0% {
+    right: -300px;
+  }
+  25% {
+    right: -15px;
+  }
+  50% {
+    right: -50px;
+  }
+  100% {
+    right: 0;
+  }
+}
