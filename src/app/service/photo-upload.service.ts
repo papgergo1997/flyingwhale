@@ -1,27 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { initializeApp } from 'firebase/app';
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Photo } from '../model/photo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PhotoUploadService {
+  list$: BehaviorSubject<Photo[]> = new BehaviorSubject<Photo[]>([]);
   dbURL =
     'https://flyingwhale-625ae-default-rtdb.europe-west1.firebasedatabase.app/images';
-  storage = getStorage();
+  firebaseApp = initializeApp(environment.firebase);
+  storage = getStorage(this.firebaseApp);
   storageRef = ref(this.storage);
 
   constructor(private http: HttpClient) {}
 
   pushFileToStorage(photo: Photo): void {
-    const imagesRef = ref(this.storage, 'images/' + photo.file.name);
+    const imagesRef = ref(this.storage, 'images/' + photo.file.name );
     const uploadTask = uploadBytesResumable(imagesRef, photo.file);
 
     uploadTask.on(
@@ -58,6 +63,7 @@ export class PhotoUploadService {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log(downloadURL, photo.file.name)
           photo.url = downloadURL;
           photo.name = photo.file.name
           this.saveImageData(photo);
@@ -69,5 +75,21 @@ export class PhotoUploadService {
     this.http
       .post<Photo>(`${this.dbURL}.json`, doc)
       .subscribe((resp) => console.log(resp));
+  }
+  getImages(): void {
+    this.http.get(`${this.dbURL}.json`)
+    .pipe(
+      map((resp) => {
+        const arr = [];
+        for (const key in resp) {
+          if (resp.hasOwnProperty(key)) {
+            arr.push({ ...resp[key], id: key });
+          }
+        }
+        return arr;
+      })
+    )
+    .subscribe((list) => this.list$.next(list));
+
   }
 }
