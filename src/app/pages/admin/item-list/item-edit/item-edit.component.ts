@@ -7,6 +7,7 @@ import { Photo } from 'src/app/model/photo';
 import { ItemService } from 'src/app/service/item.service';
 import { PhotoUploadService } from 'src/app/service/photo-upload.service';
 import { CroppedEvent } from 'ngx-photo-editor';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-item-edit',
@@ -46,7 +47,9 @@ export class ItemEditComponent implements OnInit {
     this.form.patchValue(data);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.phUService.getImages();
+  }
 
   onSubmit(): void {
     if (this.form.get('id')?.value == '0') {
@@ -58,61 +61,69 @@ export class ItemEditComponent implements OnInit {
     }
   }
 
-  // onUpload(): void {
-  //   const file = this.selectedFiles;
-  //   this.selectedFiles = undefined;
-  //   this.currentPhoto = new Photo(file[0]);
-
-  //   const previewFile = this.selectedPreviewFiles;
-  //   this.selectedPreviewFiles = undefined;
-  //   this.currentPreviewPhoto = new Photo(previewFile)
-
-  //   this.upload(1,this.currentPhoto,false);
-  //   this.upload(2,this.currentPreviewPhoto,true);
-  //   console.log(this.currentPhoto);
-  // }
-
-  // upload( num: number, photo: Photo, preview: boolean): void {
-  //   if(preview == false){
-  //     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-  //     this.phUService.getImages().subscribe((list) => {
-  //       this.form.patchValue({ image: list[list.length - num].url });
-  //     })
-  //   );
-  //   } else if(preview == true){
-  //     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-  //     this.phUService.getImages().subscribe((list) => {
-  //       this.form.patchValue({ previewImage: list[list.length - num].url });
-  //     }))
-  //   }
-
-  // }
   onUpload(): void {
     const file = this.selectedFiles;
     this.selectedFiles = undefined;
     this.currentPhoto = new Photo(file[0]);
 
-    this.upload(this.currentPhoto);
+    const previewFile = this.selectedPreviewFiles;
+    this.selectedPreviewFiles = undefined;
+    this.currentPreviewPhoto = new Photo(previewFile);
+    this.upload(this.currentPhoto, false);
+    this.upload(this.currentPreviewPhoto, true);
     console.log(this.currentPhoto);
   }
 
-  upload(photo: Photo): void {
-    of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-      this.phUService.getImages().subscribe((list) => {
-        this.form.patchValue({ image: photo.url });
-      })
-    );
+  upload(photo: Photo, preview: boolean): void {
+    if (preview == false) {
+      of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+        this.phUService.list$.subscribe((list) => {
+          this.form.patchValue({
+            image: list
+              .slice(list.length - 1, list.length)
+              .map((image) => image.url)
+              .toString(),
+          });
+        })
+      );
+    } else if (preview == true) {
+      of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+        this.phUService.list$.subscribe((list) => {
+          this.form.patchValue({
+            previewImage: list
+              .slice(list.length - 2, list.length)
+              .map((image) => image.url)
+              .toString(),
+          });
+        })
+      );
+    }
   }
+  // onUpload(): void {
+  //   const file = this.selectedFiles;
+  //   this.selectedFiles = undefined;
+  //   this.currentPhoto = new Photo(file[0]);
+
+  //   this.upload(this.currentPhoto);
+  // }
+
+  // upload(photo: Photo): void {
+  //   of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+  //     this.phUService.list$.subscribe((list) => {
+  //       console.log(list)
+  //       this.form.patchValue({ image: list.map(image=>image.url).toString() });
+  //     })
+  //   );
+  // }
 
   fileChangeEvent(event: any): void {
-    // this.fileChangeEvent = event;
+    this.imageChangedEvent = event;
     this.selectedFiles = event.target.files;
   }
 
   imageCropped(event: CroppedEvent): void {
     this.selectedPreviewFiles = event.file;
   }
-
 
   close(): void {
     this.dialogRef.close();

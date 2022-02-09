@@ -16,14 +16,16 @@ import { Photo } from '../model/photo';
   providedIn: 'root',
 })
 export class PhotoUploadService {
-  list$: Observable<Photo[]> = new Observable<Photo[]>();
+  list$: BehaviorSubject<Photo[]> = new BehaviorSubject<Photo[]>([]);
   dbURL =
     'https://flyingwhale-625ae-default-rtdb.europe-west1.firebasedatabase.app/images';
   firebaseApp = initializeApp(environment.firebase);
   storage = getStorage(this.firebaseApp);
   storageRef = ref(this.storage);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getImages()
+  }
 
   pushFileToStorage(photo: Photo): void {
     const imagesRef = ref(this.storage, 'images/' + photo.file.name );
@@ -74,10 +76,10 @@ export class PhotoUploadService {
   saveImageData(doc: Photo): void {
     this.http
       .post<Photo>(`${this.dbURL}.json`, doc)
-      .subscribe((resp) => console.log(resp));
+      .subscribe(() => this.getImages());
   }
-  getImages(): Observable<any> {
-   return this.http.get(`${this.dbURL}.json`)
+  getImages(): void {
+   this.http.get(`${this.dbURL}.json`)
     .pipe(
       map((resp) => {
         const arr = [];
@@ -88,7 +90,7 @@ export class PhotoUploadService {
         }
         return arr;
       })
-    )
+    ).subscribe(list=>this.list$.next(list))
 
   }
 }

@@ -29,7 +29,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   @ViewChild('paginator') paginator: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
-  columns: string[] = ['name', 'category', 'tech', 'image', 'edit'];
+  columns: string[] = ['name', 'category', 'tech', 'previewImage', 'edit'];
 
   constructor(private iService: ItemService, private dialog: MatDialog) {}
 

@@ -29,12 +29,12 @@
         <th class="table-head" mat-header-cell *matHeaderCellDef>
           {{ col }}
         </th>
-        <div *ngIf="col != 'edit' && col != 'image'">
+        <div *ngIf="col != 'edit' && col != 'previewImage'">
           <td mat-cell class="table-cell" *matCellDef="let item">
             {{ item[col] }}
           </td>
         </div>
-        <div *ngIf="col == 'image'">
+        <div *ngIf="col == 'previewImage'">
           <td mat-cell class="table-cell" *matCellDef="let item">
             <img src="{{ item[col] }}" alt="{{ item[col] }}" style="width: 100px;"/>
           </td>
