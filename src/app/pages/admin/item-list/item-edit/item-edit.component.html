@@ -40,6 +40,18 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
+    <label>Image</label>
+    <img
+      src="{{ form.get('image').value }}"
+      alt="{{ form.get('image').value }}"
+      style="width: 100px"
+    />
+    <label>Preview Image</label>
+    <img
+      src="{{ form.get('previewImage').value }}"
+      alt="{{ form.get('previewImage').value }}"
+      style="width: 100px"
+    />
 
     <div><input type="file" (change)="fileChangeEvent($event)" /></div>
 
@@ -53,11 +65,7 @@
     </ngx-photo-editor>
     <img [src]="base64" alt="" />
 
-    <img
-      src="{{ form.get('image').value }}"
-      alt="{{ form.get('image').value }}"
-      style="width: 100px"
-    />
+
     <button mat-button (click)="onUpload()">Upload</button>
     <div fxLayout="row" class="btn-group">
       <button

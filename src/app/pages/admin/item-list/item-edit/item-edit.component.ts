@@ -58,6 +58,35 @@ export class ItemEditComponent implements OnInit {
     }
   }
 
+  // onUpload(): void {
+  //   const file = this.selectedFiles;
+  //   this.selectedFiles = undefined;
+  //   this.currentPhoto = new Photo(file[0]);
+
+  //   const previewFile = this.selectedPreviewFiles;
+  //   this.selectedPreviewFiles = undefined;
+  //   this.currentPreviewPhoto = new Photo(previewFile)
+
+  //   this.upload(1,this.currentPhoto,false);
+  //   this.upload(2,this.currentPreviewPhoto,true);
+  //   console.log(this.currentPhoto);
+  // }
+
+  // upload( num: number, photo: Photo, preview: boolean): void {
+  //   if(preview == false){
+  //     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+  //     this.phUService.getImages().subscribe((list) => {
+  //       this.form.patchValue({ image: list[list.length - num].url });
+  //     })
+  //   );
+  //   } else if(preview == true){
+  //     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+  //     this.phUService.getImages().subscribe((list) => {
+  //       this.form.patchValue({ previewImage: list[list.length - num].url });
+  //     }))
+  //   }
+
+  // }
   onUpload(): void {
     const file = this.selectedFiles;
     this.selectedFiles = undefined;
@@ -70,13 +99,13 @@ export class ItemEditComponent implements OnInit {
   upload(photo: Photo): void {
     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
       this.phUService.getImages().subscribe((list) => {
-        this.form.patchValue({ image: list[list.length - 1].url });
+        this.form.patchValue({ image: photo.url });
       })
     );
   }
 
   fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
+    // this.fileChangeEvent = event;
     this.selectedFiles = event.target.files;
   }
 
