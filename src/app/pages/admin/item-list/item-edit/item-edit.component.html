@@ -25,34 +25,39 @@
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Description" formControlName="description" />
-
     </mat-form-field>
     <mat-form-field>
-      <mat-select
-        matInput
-        placeholder="Category"
-        formControlName="category"
-      >
+      <mat-select matInput placeholder="Category" formControlName="category">
         <mat-option *ngFor="let opt of categoryOpt" [value]="opt">{{
           opt
         }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-select
-        matInput
-        placeholder="Technique"
-        formControlName="tech"
-      >
+      <mat-select matInput placeholder="Technique" formControlName="tech">
         <mat-option *ngFor="let opt of techOpt" [value]="opt">{{
           opt
         }}</mat-option>
       </mat-select>
     </mat-form-field>
 
-      <input type="file" (change)="selectFile($event)">
+    <div><input type="file" (change)="fileChangeEvent($event)" /></div>
 
-    <img src="{{form.get('image').value}}" alt="{{form.get('image').value}}" style="width: 100px;">
+    <ngx-photo-editor class="editor" [imageChangedEvent]="imageChangedEvent"
+      (imageCropped)="imageCropped($event)"
+      [aspectRatio]="4 / 3"
+      [viewMode]="3"
+      [resizeToWidth]="500">
+
+
+    </ngx-photo-editor>
+    <img [src]="base64" alt="" />
+
+    <img
+      src="{{ form.get('image').value }}"
+      alt="{{ form.get('image').value }}"
+      style="width: 100px"
+    />
     <button mat-button (click)="onUpload()">Upload</button>
     <div fxLayout="row" class="btn-group">
       <button
@@ -68,4 +73,3 @@
     </div>
   </form>
 </div>
-

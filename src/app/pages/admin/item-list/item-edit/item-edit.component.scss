@@ -12,6 +12,9 @@
   top: 30px;
   animation: error 1s 1;
 }
+.editor{
+  position: relative;
+}
 
 @keyframes error {
   0% {

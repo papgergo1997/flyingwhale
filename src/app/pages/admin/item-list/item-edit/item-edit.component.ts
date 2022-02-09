@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { Photo } from 'src/app/model/photo';
 import { ItemService } from 'src/app/service/item.service';
 import { PhotoUploadService } from 'src/app/service/photo-upload.service';
+import { CroppedEvent } from 'ngx-photo-editor';
 
 @Component({
   selector: 'app-item-edit',
@@ -13,10 +14,16 @@ import { PhotoUploadService } from 'src/app/service/photo-upload.service';
   styleUrls: ['./item-edit.component.scss'],
 })
 export class ItemEditComponent implements OnInit {
+  //FOR CROPPER
+  imageChangedEvent: any;
+  base64: any;
+  //
   categoryOpt: string[] = ['logos', 'illustrations'];
   techOpt: string[] = ['colored', 'B&W'];
   selectedFiles: any;
   currentPhoto: Photo;
+  selectedPreviewFiles: any;
+  currentPreviewPhoto: Photo;
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -25,6 +32,7 @@ export class ItemEditComponent implements OnInit {
     category: new FormControl(''),
     tech: new FormControl(''),
     image: new FormControl(''),
+    previewImage: new FormControl(''),
     imageId: new FormControl(''),
     imageName: new FormControl(''),
   });
@@ -55,22 +63,27 @@ export class ItemEditComponent implements OnInit {
     this.selectedFiles = undefined;
     this.currentPhoto = new Photo(file[0]);
 
-
     this.upload(this.currentPhoto);
     console.log(this.currentPhoto);
   }
 
   upload(photo: Photo): void {
     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-      this.phUService.getImages().subscribe(list=>{
-        this.form.patchValue({image: list[list.length -1].url})
+      this.phUService.getImages().subscribe((list) => {
+        this.form.patchValue({ image: list[list.length - 1].url });
       })
     );
   }
 
-  selectFile(event: any): void {
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
     this.selectedFiles = event.target.files;
   }
+
+  imageCropped(event: CroppedEvent): void {
+    this.selectedPreviewFiles = event.file;
+  }
+
 
   close(): void {
     this.dialogRef.close();

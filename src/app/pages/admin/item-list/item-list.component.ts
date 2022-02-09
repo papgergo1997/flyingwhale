@@ -22,6 +22,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
     category: '',
     tech: '',
     image: '',
+    previewImage: '',
     imageId: '',
     imageName: '',
   };

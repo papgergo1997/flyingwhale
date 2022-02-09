@@ -22,9 +22,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { NgxPhotoEditorModule } from 'ngx-photo-editor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,14 +42,18 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     MatDialogModule,
     MatSelectModule,
     ReactiveFormsModule,
+    NgxPhotoEditorModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+    NgbModule,
   ],
+  exports:[NgxPhotoEditorModule],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ItemEditComponent],
+  entryComponents: [ItemEditComponent, ],
+
 })
 export class AppModule {}
