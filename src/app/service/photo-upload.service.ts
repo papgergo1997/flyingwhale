@@ -85,7 +85,7 @@ export class PhotoUploadService {
         const arr = [];
         for (const key in resp) {
           if (resp.hasOwnProperty(key)) {
-            arr.push({ ...resp[key], id: key });
+            arr.push({ ...resp[key], key: key });
           }
         }
         return arr;

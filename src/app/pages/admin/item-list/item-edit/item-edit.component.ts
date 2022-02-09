@@ -53,6 +53,7 @@ export class ItemEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.get('id')?.value == '0') {
+      // PROVIDE THE KEY HERE!!!!
       this.iService.create(this.form.value);
       this.dialogRef.close();
     } else {
@@ -81,7 +82,10 @@ export class ItemEditComponent implements OnInit {
           this.form.patchValue({
             image: list
               .slice(list.length - 1, list.length)
-              .map((image) => image.url)
+              .map((image) => {
+                //GET THE KEY FROM HERE!!!!
+                return image.url;
+              })
               .toString(),
           });
         })
