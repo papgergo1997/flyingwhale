@@ -21,7 +21,7 @@ export class ItemEditComponent implements OnInit {
   imageChangedEvent: any;
   base64: any;
   //
-  categoryOpt$: Category[] = [];
+  categoryOpt: Category[] = [];
   techOpt: string[] = ['colored', 'B&W'];
   selectedFiles: any;
   currentPhoto: Photo;
@@ -29,9 +29,9 @@ export class ItemEditComponent implements OnInit {
   currentPreviewPhoto: Photo;
   imageNames: string[] = [];
   imageIds: string[] = [];
-  progress$:any;
+  progress: number = 100;
   newCat: boolean =false;
-  arr: [];
+
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -57,10 +57,10 @@ export class ItemEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.phUService.progress.subscribe((value)=>this.progress$ = value)
+
     this.phUService.getImages();
     this.catService.getAll()
-    this.catService.list$.subscribe((list)=> this.categoryOpt$ = list);
+    this.catService.list$.subscribe((list)=> this.categoryOpt = list);
 
   }
 
@@ -73,7 +73,7 @@ export class ItemEditComponent implements OnInit {
       });
       this.iService.create(this.form.value);
       this.dialogRef.close();
-      this.progress$ = 0;
+      this.progress = 0;
     } else {
       this.iService.update(this.form.getRawValue());
       this.dialogRef.close();
@@ -88,6 +88,7 @@ export class ItemEditComponent implements OnInit {
     const previewFile = this.selectedPreviewFiles;
     this.selectedPreviewFiles = undefined;
     this.currentPreviewPhoto = new Photo(previewFile);
+    this.phUService.progress.subscribe((value)=>this.progress = value)
     this.upload(this.currentPhoto, false);
     this.upload(this.currentPreviewPhoto, true);
 

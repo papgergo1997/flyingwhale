@@ -15,8 +15,6 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
   styleUrls: ['./item-list.component.scss'],
 })
 export class ItemListComponent implements OnInit, OnDestroy {
-  list$: Observable<Item[]> = new Observable<Item[]>();
-
   item: Item = {
     id: '0',
     name: '',
@@ -40,7 +38,6 @@ export class ItemListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.list$ = this.iService.list$;
     this.subscription = this.iService.list$.subscribe((list) => {
       this.dataSource = new MatTableDataSource(list);
       this.dataSource.paginator = this.paginator;

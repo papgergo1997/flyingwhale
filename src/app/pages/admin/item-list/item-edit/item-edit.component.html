@@ -1,4 +1,9 @@
-<div fxFlex fxLayoutAlign="center center" fxLayout="column" class="form-container">
+<div
+  fxFlex
+  fxLayoutAlign="center center"
+  fxLayout="column"
+  class="form-container"
+>
   <h2 mat-dialog-title>Edit</h2>
 
   <form
@@ -25,19 +30,31 @@
         </div> -->
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Description" formControlName="description" />
+        <input
+          matInput
+          placeholder="Description"
+          formControlName="description"
+        />
       </mat-form-field>
-      <mat-form-field >
+      <mat-form-field>
         <mat-select matInput placeholder="Category" formControlName="category">
-          <mat-option *ngFor="let opt of categoryOpt$ " [value]="opt.name">{{
+          <mat-option *ngFor="let opt of categoryOpt" [value]="opt.name">{{
             opt.name
           }}</mat-option>
         </mat-select>
-        <button mat-button class="add-btn" (click)="newCat = true"><mat-icon>add</mat-icon></button>
+        <button mat-button class="add-btn" (click)="newCat = true">
+          <mat-icon>add</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field *ngIf="newCat" fxLayout="row">
-        <input matInput placeholder="New Category" formControlName="newCategory">
-        <button mat-button class="add-btn" (click)="createNewCat()"><mat-icon>check</mat-icon></button>
+        <input
+          matInput
+          placeholder="New Category"
+          formControlName="newCategory"
+        />
+        <button mat-button class="add-btn" (click)="createNewCat()">
+          <mat-icon>check</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field>
         <mat-select matInput placeholder="Technique" formControlName="tech">
@@ -50,49 +67,49 @@
     </div>
     <div fxFlex="50" fxLayout="column">
       <label>Image</label>
-    <img
-    *ngIf="progress$ == 100 && form.get('image').value != ''"
-      src="{{ form.get('image').value }}"
-      alt="{{ form.get('image').value }}"
-      style="width: 100px"
-    />
-    <label>Preview Image</label>
-    <img
-    *ngIf="progress$ == 100 && form.get('previewImage').value != ''"
-      src="{{ form.get('previewImage').value }}"
-      alt="{{ form.get('previewImage').value }}"
-      style="width: 100px"
-    />
+      <img
+        *ngIf="progress == 100 && form.get('image').value != ''"
+        src="{{ form.get('image').value }}"
+        alt="{{ form.get('image').value }}"
+        style="width: 100px"
+      />
+      <label>Preview Image</label>
+      <img
+        *ngIf="progress == 100 && form.get('previewImage').value != ''"
+        src="{{ form.get('previewImage').value }}"
+        alt="{{ form.get('previewImage').value }}"
+        style="width: 100px"
+      />
 
-    <div><input type="file" (change)="fileChangeEvent($event)" /></div>
+      <div><input type="file" (change)="fileChangeEvent($event)" /></div>
 
-    <ngx-photo-editor
-      class="editor"
-      [imageChangedEvent]="imageChangedEvent"
-      (imageCropped)="imageCropped($event)"
-      [aspectRatio]="4 / 3"
-      [viewMode]="3"
-      [resizeToWidth]="500"
-    >
-    </ngx-photo-editor>
-    <img [src]="base64" alt="" />
-    <div
-      *ngIf="currentPhoto && form.get('image').value != null"
-    style="width: 100%; margin: 3px 0; "
-    >
-      <div
-        class="progress-bar progress-bar-info"
-        role="progressbar"
-        attr.aria-valuenow="{{ progress$ }}"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        [ngStyle]="{ width: progress$ + '%' }"
+      <ngx-photo-editor
+        class="editor"
+        [imageChangedEvent]="imageChangedEvent"
+        (imageCropped)="imageCropped($event)"
+        [aspectRatio]="4 / 3"
+        [viewMode]="3"
+        [resizeToWidth]="500"
       >
-        {{ progress$ }}%
+      </ngx-photo-editor>
+      <img [src]="base64" alt="" />
+      <div
+        *ngIf="currentPhoto && form.get('image').value != null"
+        style="width: 100%; margin: 3px 0"
+      >
+        <div
+          class="progress-bar progress-bar-info"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
       </div>
-    </div>
 
-    <button class="upload-btn" mat-button (click)="onUpload()">Upload</button>
+      <button class="upload-btn" mat-button (click)="onUpload()">Upload</button>
     </div>
     <div fxLayout="row" class="btn-group">
       <button
