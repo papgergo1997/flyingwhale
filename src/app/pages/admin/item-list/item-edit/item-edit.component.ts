@@ -136,7 +136,7 @@ export class ItemEditComponent implements OnInit {
   createNewCat(): void {
     this.catService.create({id: '', name: this.form.get('newCategory').value, description: ''})
     this.catService.getAll()
-    console.log(this.categoryOpt$)
+    this.form.get('newCategory').reset();
     this.newCat = false;
   }
 
