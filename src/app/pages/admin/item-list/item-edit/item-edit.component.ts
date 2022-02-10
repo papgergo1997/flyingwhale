@@ -25,6 +25,8 @@ export class ItemEditComponent implements OnInit {
   currentPhoto: Photo;
   selectedPreviewFiles: any;
   currentPreviewPhoto: Photo;
+  imageNames: string[] = [];
+  imageIds: string[] = [];
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -53,7 +55,11 @@ export class ItemEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.get('id')?.value == '0') {
-      // PROVIDE THE KEY HERE!!!!
+      // PROVIDE THE KEY AND NAME HERE!!!!
+      this.form.patchValue({
+        imageId: this.imageIds,
+        imageName: this.imageNames,
+      });
       this.iService.create(this.form.value);
       this.dialogRef.close();
     } else {
@@ -83,7 +89,9 @@ export class ItemEditComponent implements OnInit {
             image: list
               .slice(list.length - 1, list.length)
               .map((image) => {
-                //GET THE KEY FROM HERE!!!!
+                //GET THE KEY AND NAME FROM HERE!!!!
+                this.imageIds.push(image.key);
+                this.imageNames.push(image.name);
                 return image.url;
               })
               .toString(),

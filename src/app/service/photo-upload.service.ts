@@ -6,6 +6,7 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  deleteObject
 } from 'firebase/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -24,11 +25,11 @@ export class PhotoUploadService {
   storageRef = ref(this.storage);
 
   constructor(private http: HttpClient) {
-    this.getImages()
+    this.getImages();
   }
 
   pushFileToStorage(photo: Photo): void {
-    const imagesRef = ref(this.storage, 'images/' + photo.file.name );
+    const imagesRef = ref(this.storage, 'images/' + photo.file.name);
     const uploadTask = uploadBytesResumable(imagesRef, photo.file);
 
     uploadTask.on(
@@ -65,9 +66,9 @@ export class PhotoUploadService {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log(downloadURL, photo.file.name)
+          console.log(downloadURL, photo.file.name);
           photo.url = downloadURL;
-          photo.name = photo.file.name
+          photo.name = photo.file.name;
           this.saveImageData(photo);
         });
       }
@@ -79,18 +80,40 @@ export class PhotoUploadService {
       .subscribe(() => this.getImages());
   }
   getImages(): void {
-   this.http.get(`${this.dbURL}.json`)
-    .pipe(
-      map((resp) => {
-        const arr = [];
-        for (const key in resp) {
-          if (resp.hasOwnProperty(key)) {
-            arr.push({ ...resp[key], key: key });
+    this.http
+      .get(`${this.dbURL}.json`)
+      .pipe(
+        map((resp) => {
+          const arr = [];
+          for (const key in resp) {
+            if (resp.hasOwnProperty(key)) {
+              arr.push({ ...resp[key], key: key });
+            }
           }
-        }
-        return arr;
-      })
-    ).subscribe(list=>this.list$.next(list))
-
+          return arr;
+        })
+      )
+      .subscribe((list) => this.list$.next(list));
+  }
+  deleteImageFrDB(key: string): void {
+    this.http
+      .delete(`${this.dbURL}/${key}.json`)
+      .subscribe(() => this.getImages());
+  }
+  deleteImageFrStAndDB(name: string, key: string): void {
+    deleteObject(ref(this.storage, 'images/' + name)).then(()=>{
+      console.log(`The file ${name} was deleted successfully`)
+      this.deleteImageFrDB(key)
+    }).catch((error)=> {
+      console.log(error)
+    })
+  }
+  deleteImages(name: string, id: string, secondName?: string, secondId?: string):void {
+    if(secondName){
+      this.deleteImageFrStAndDB(name, id);
+      this.deleteImageFrStAndDB(secondName, secondId);
+    } else {
+      this.deleteImageFrStAndDB(name, id)
+    }
   }
 }
