@@ -8,6 +8,8 @@ import { ItemService } from 'src/app/service/item.service';
 import { PhotoUploadService } from 'src/app/service/photo-upload.service';
 import { CroppedEvent } from 'ngx-photo-editor';
 import { map } from 'rxjs/operators';
+import { CategoryService } from 'src/app/service/category.service';
+import { Category } from 'src/app/model/category';
 
 @Component({
   selector: 'app-item-edit',
@@ -19,7 +21,7 @@ export class ItemEditComponent implements OnInit {
   imageChangedEvent: any;
   base64: any;
   //
-  categoryOpt: string[] = ['logos', 'illustrations'];
+  categoryOpt$: Category[] = [];
   techOpt: string[] = ['colored', 'B&W'];
   selectedFiles: any;
   currentPhoto: Photo;
@@ -48,6 +50,7 @@ export class ItemEditComponent implements OnInit {
     private iService: ItemService,
     private phUService: PhotoUploadService,
     private dialogRef: MatDialogRef<ItemEditComponent>,
+    private catService: CategoryService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.form.patchValue(data);
@@ -56,6 +59,9 @@ export class ItemEditComponent implements OnInit {
   ngOnInit(): void {
   this.phUService.progress.subscribe((value)=>this.progress$ = value)
     this.phUService.getImages();
+    this.catService.getAll()
+    this.catService.list$.subscribe((list)=> this.categoryOpt$ = list);
+
   }
 
   onSubmit(): void {
@@ -128,7 +134,9 @@ export class ItemEditComponent implements OnInit {
   }
 
   createNewCat(): void {
-    this.categoryOpt.push(this.form.get('newCategory').value)
+    this.catService.create({id: '', name: this.form.get('newCategory').value, description: ''})
+    this.catService.getAll()
+    console.log(this.categoryOpt$)
     this.newCat = false;
   }
 
