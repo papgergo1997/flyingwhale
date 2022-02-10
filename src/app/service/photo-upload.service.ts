@@ -37,7 +37,7 @@ export class PhotoUploadService {
       'state_changed',
       (snapshot) => {
         this.progress.next(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          ((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toFixed(0)
         );
         switch (snapshot.state) {
           case 'paused':

@@ -63,8 +63,8 @@ export class ItemEditComponent implements OnInit {
         imageName: this.imageNames,
       });
       this.iService.create(this.form.value);
-      this.progress$ = 0;
       this.dialogRef.close();
+      this.progress$ = 0;
     } else {
       this.iService.update(this.form.getRawValue());
       this.dialogRef.close();
