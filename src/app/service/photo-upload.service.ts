@@ -6,7 +6,7 @@ import {
   ref,
   uploadBytesResumable,
   getDownloadURL,
-  deleteObject
+  deleteObject,
 } from 'firebase/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,6 +18,7 @@ import { Photo } from '../model/photo';
 })
 export class PhotoUploadService {
   list$: BehaviorSubject<Photo[]> = new BehaviorSubject<Photo[]>([]);
+  progress: BehaviorSubject<any> = new BehaviorSubject<any>(0);
   dbURL =
     'https://flyingwhale-625ae-default-rtdb.europe-west1.firebasedatabase.app/images';
   firebaseApp = initializeApp(environment.firebase);
@@ -35,9 +36,9 @@ export class PhotoUploadService {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
+        this.progress.next(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
         switch (snapshot.state) {
           case 'paused':
             console.log('Upload is paused');
@@ -69,6 +70,7 @@ export class PhotoUploadService {
           console.log(downloadURL, photo.file.name);
           photo.url = downloadURL;
           photo.name = photo.file.name;
+          // this.progress.next(0)
           this.saveImageData(photo);
         });
       }
@@ -101,19 +103,26 @@ export class PhotoUploadService {
       .subscribe(() => this.getImages());
   }
   deleteImageFrStAndDB(name: string, key: string): void {
-    deleteObject(ref(this.storage, 'images/' + name)).then(()=>{
-      console.log(`The file ${name} was deleted successfully`)
-      this.deleteImageFrDB(key)
-    }).catch((error)=> {
-      console.log(error)
-    })
+    deleteObject(ref(this.storage, 'images/' + name))
+      .then(() => {
+        console.log(`The file ${name} was deleted successfully`);
+        this.deleteImageFrDB(key);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
-  deleteImages(name: string, id: string, secondName?: string, secondId?: string):void {
-    if(secondName){
+  deleteImages(
+    name: string,
+    id: string,
+    secondName?: string,
+    secondId?: string
+  ): void {
+    if (secondName) {
       this.deleteImageFrStAndDB(name, id);
       this.deleteImageFrStAndDB(secondName, secondId);
     } else {
-      this.deleteImageFrStAndDB(name, id)
+      this.deleteImageFrStAndDB(name, id);
     }
   }
 }

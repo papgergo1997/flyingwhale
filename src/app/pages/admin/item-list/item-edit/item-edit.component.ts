@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Photo } from 'src/app/model/photo';
 import { ItemService } from 'src/app/service/item.service';
 import { PhotoUploadService } from 'src/app/service/photo-upload.service';
@@ -27,6 +27,7 @@ export class ItemEditComponent implements OnInit {
   currentPreviewPhoto: Photo;
   imageNames: string[] = [];
   imageIds: string[] = [];
+  progress$:any;
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -50,6 +51,7 @@ export class ItemEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.phUService.progress.subscribe((value)=>this.progress$ = value)
     this.phUService.getImages();
   }
 
@@ -61,6 +63,7 @@ export class ItemEditComponent implements OnInit {
         imageName: this.imageNames,
       });
       this.iService.create(this.form.value);
+      this.progress$ = 0;
       this.dialogRef.close();
     } else {
       this.iService.update(this.form.getRawValue());
@@ -78,7 +81,7 @@ export class ItemEditComponent implements OnInit {
     this.currentPreviewPhoto = new Photo(previewFile);
     this.upload(this.currentPhoto, false);
     this.upload(this.currentPreviewPhoto, true);
-    console.log(this.currentPhoto);
+    console.log(this.progress$);
   }
 
   upload(photo: Photo, preview: boolean): void {

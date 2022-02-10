@@ -16,6 +16,7 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
 })
 export class ItemListComponent implements OnInit, OnDestroy {
   list$: Observable<Item[]> = new Observable<Item[]>();
+
   item: Item = {
     id: '0',
     name: '',
@@ -63,7 +64,6 @@ export class ItemListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(doc: Item): void {
-    console.log();
     this.iService.delete(doc);
     this.phUService.deleteImages(
       doc.imageName[doc.imageName.length - 1],

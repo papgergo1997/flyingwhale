@@ -55,16 +55,31 @@
 
     <div><input type="file" (change)="fileChangeEvent($event)" /></div>
 
-    <ngx-photo-editor class="editor" [imageChangedEvent]="imageChangedEvent"
+    <ngx-photo-editor
+      class="editor"
+      [imageChangedEvent]="imageChangedEvent"
       (imageCropped)="imageCropped($event)"
       [aspectRatio]="4 / 3"
       [viewMode]="3"
-      [resizeToWidth]="500">
-
-
+      [resizeToWidth]="500"
+    >
     </ngx-photo-editor>
     <img [src]="base64" alt="" />
-
+    <div
+      *ngIf="currentPhoto && form.get('image').value != null"
+    style="width: 100%;"
+    >
+      <div
+        class="progress-bar progress-bar-info"
+        role="progressbar"
+        attr.aria-valuenow="{{ progress$ }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progress$ + '%' }"
+      >
+        {{ progress$ }}%
+      </div>
+    </div>
 
     <button mat-button (click)="onUpload()">Upload</button>
     <div fxLayout="row" class="btn-group">
