@@ -27,12 +27,17 @@
       <mat-form-field>
         <input matInput placeholder="Description" formControlName="description" />
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field >
         <mat-select matInput placeholder="Category" formControlName="category">
           <mat-option *ngFor="let opt of categoryOpt" [value]="opt">{{
             opt
           }}</mat-option>
         </mat-select>
+        <button mat-button class="add-btn" (click)="newCat = true"><mat-icon>add</mat-icon></button>
+      </mat-form-field>
+      <mat-form-field *ngIf="newCat" fxLayout="row">
+        <input matInput placeholder="New Category" formControlName="newCategory">
+        <button mat-button class="add-btn" (click)="createNewCat()"><mat-icon>check</mat-icon></button>
       </mat-form-field>
       <mat-form-field>
         <mat-select matInput placeholder="Technique" formControlName="tech">
@@ -40,6 +45,7 @@
             opt
           }}</mat-option>
         </mat-select>
+        <button mat-button class="add-btn"><mat-icon>add</mat-icon></button>
       </mat-form-field>
     </div>
     <div fxFlex="50" fxLayout="column">

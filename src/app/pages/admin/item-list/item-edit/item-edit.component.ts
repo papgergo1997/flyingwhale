@@ -28,6 +28,8 @@ export class ItemEditComponent implements OnInit {
   imageNames: string[] = [];
   imageIds: string[] = [];
   progress$:any;
+  newCat: boolean =false;
+  arr: [];
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -39,6 +41,7 @@ export class ItemEditComponent implements OnInit {
     previewImage: new FormControl(''),
     imageId: new FormControl(''),
     imageName: new FormControl(''),
+    newCategory: new FormControl('')
   });
 
   constructor(
@@ -122,6 +125,11 @@ export class ItemEditComponent implements OnInit {
 
   imageCropped(event: CroppedEvent): void {
     this.selectedPreviewFiles = event.file;
+  }
+
+  createNewCat(): void {
+    this.categoryOpt.push(this.form.get('newCategory').value)
+    this.newCat = false;
   }
 
   close(): void {
