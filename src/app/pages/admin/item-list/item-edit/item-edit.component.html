@@ -1,46 +1,49 @@
-<div fxFlex fxLayoutAlign="center center" fxLayout="column" class="container">
+<div fxFlex fxLayoutAlign="center center" fxLayout="column" class="form-container">
   <h2 mat-dialog-title>Edit</h2>
 
   <form
     class="form"
     fxFlex
-    fxLayoutAlign="center center"
-    fxLayout="column"
+    fxLayoutAlign="center"
+    fxLayout="row wrap"
     [formGroup]="form"
   >
-    <mat-form-field *ngIf="this.form.get('id').value != '0'">
-      <input matInput placeholder="Id" formControlName="id" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Name" formControlName="name" />
-      <!-- <div *ngIf="form.get('address').invalid && !form.pristine">
-        <div class="error-message">
-          {{
-            form.get("address").hasError("required")
-              ? "Cím megadása kötelező"
-              : "Cím túl hosszú"
-          }}
-        </div>
-      </div> -->
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Description" formControlName="description" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select matInput placeholder="Category" formControlName="category">
-        <mat-option *ngFor="let opt of categoryOpt" [value]="opt">{{
-          opt
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select matInput placeholder="Technique" formControlName="tech">
-        <mat-option *ngFor="let opt of techOpt" [value]="opt">{{
-          opt
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <label>Image</label>
+    <div fxFlex="50">
+      <mat-form-field *ngIf="this.form.get('id').value != '0'">
+        <input matInput placeholder="Id" formControlName="id" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name" />
+        <!-- <div *ngIf="form.get('address').invalid && !form.pristine">
+          <div class="error-message">
+            {{
+              form.get("address").hasError("required")
+                ? "Cím megadása kötelező"
+                : "Cím túl hosszú"
+            }}
+          </div>
+        </div> -->
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Description" formControlName="description" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select matInput placeholder="Category" formControlName="category">
+          <mat-option *ngFor="let opt of categoryOpt" [value]="opt">{{
+            opt
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select matInput placeholder="Technique" formControlName="tech">
+          <mat-option *ngFor="let opt of techOpt" [value]="opt">{{
+            opt
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" fxLayout="column">
+      <label>Image</label>
     <img
       src="{{ form.get('image').value }}"
       alt="{{ form.get('image').value }}"
@@ -67,7 +70,7 @@
     <img [src]="base64" alt="" />
     <div
       *ngIf="currentPhoto && form.get('image').value != null"
-    style="width: 100%;"
+    style="width: 100%; margin: 3px 0; "
     >
       <div
         class="progress-bar progress-bar-info"
@@ -81,7 +84,8 @@
       </div>
     </div>
 
-    <button mat-button (click)="onUpload()">Upload</button>
+    <button class="upload-btn" mat-button (click)="onUpload()">Upload</button>
+    </div>
     <div fxLayout="row" class="btn-group">
       <button
         [disabled]="form.invalid"

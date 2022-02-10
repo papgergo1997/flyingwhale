@@ -81,7 +81,7 @@ export class ItemEditComponent implements OnInit {
     this.currentPreviewPhoto = new Photo(previewFile);
     this.upload(this.currentPhoto, false);
     this.upload(this.currentPreviewPhoto, true);
-    console.log(this.progress$);
+
   }
 
   upload(photo: Photo, preview: boolean): void {
@@ -114,22 +114,6 @@ export class ItemEditComponent implements OnInit {
       );
     }
   }
-  // onUpload(): void {
-  //   const file = this.selectedFiles;
-  //   this.selectedFiles = undefined;
-  //   this.currentPhoto = new Photo(file[0]);
-
-  //   this.upload(this.currentPhoto);
-  // }
-
-  // upload(photo: Photo): void {
-  //   of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-  //     this.phUService.list$.subscribe((list) => {
-  //       console.log(list)
-  //       this.form.patchValue({ image: list.map(image=>image.url).toString() });
-  //     })
-  //   );
-  // }
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;

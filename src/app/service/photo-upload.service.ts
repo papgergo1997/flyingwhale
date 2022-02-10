@@ -67,7 +67,6 @@ export class PhotoUploadService {
       () => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log(downloadURL, photo.file.name);
           photo.url = downloadURL;
           photo.name = photo.file.name;
           // this.progress.next(0)

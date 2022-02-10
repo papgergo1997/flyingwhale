@@ -1,6 +1,13 @@
 @import "/src/assets/scss/variables/colors";
 .form {
-  width: 250px;
+  width: 490px;
+}
+.progress-bar{
+  border-radius: 5px !important;
+}
+.upload-btn{
+  background-color: $primary-green;
+  color: whitesmoke;
 }
 .error-message {
   width: 100%;
