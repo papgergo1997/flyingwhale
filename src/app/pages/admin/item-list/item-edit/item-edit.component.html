@@ -45,12 +45,14 @@
     <div fxFlex="50" fxLayout="column">
       <label>Image</label>
     <img
+    *ngIf="progress$ == 100 && form.get('image').value != ''"
       src="{{ form.get('image').value }}"
       alt="{{ form.get('image').value }}"
       style="width: 100px"
     />
     <label>Preview Image</label>
     <img
+    *ngIf="progress$ == 100 && form.get('previewImage').value != ''"
       src="{{ form.get('previewImage').value }}"
       alt="{{ form.get('previewImage').value }}"
       style="width: 100px"
