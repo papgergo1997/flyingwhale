@@ -64,14 +64,30 @@
       </div>
       <mat-form-field>
         <mat-select matInput placeholder="Technique" formControlName="tech">
-          <mat-option *ngFor="let opt of techOpt" [value]="opt">{{
-            opt
+          <mat-option *ngFor="let opt of techOpt" [value]="opt.name">{{
+            opt.name
           }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <button class="add-btn">
+      <button class="add-btn" (click)="newTech = true">
         <mat-icon class="add-icon">add</mat-icon>
       </button>
+      <div *ngIf="newTech">
+        <mat-form-field fxLayout="row">
+          <input
+            matInput
+            placeholder="New Technique"
+            formControlName="newTech"
+          />
+        </mat-form-field>
+
+        <button class="add-btn" (click)="createNewTech()">
+          <mat-icon class="check-icon">check</mat-icon>
+        </button>
+        <button class="close-btn" (click)="newTech=false">
+          <mat-icon class="close-icon">close</mat-icon>
+        </button>
+      </div>
     </div>
     <div fxFlex="50" fxLayout="column">
       <label>Image</label>

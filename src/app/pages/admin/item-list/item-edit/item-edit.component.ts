@@ -10,6 +10,8 @@ import { CroppedEvent } from 'ngx-photo-editor';
 import { map } from 'rxjs/operators';
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from 'src/app/model/category';
+import { TechService } from 'src/app/service/tech.service';
+import { Tech } from 'src/app/model/tech';
 
 @Component({
   selector: 'app-item-edit',
@@ -22,7 +24,7 @@ export class ItemEditComponent implements OnInit {
   base64: any;
   //
   categoryOpt: Category[] = [];
-  techOpt: string[] = ['colored', 'B&W'];
+  techOpt: Tech[] =[];
   selectedFiles: any;
   currentPhoto: Photo;
   selectedPreviewFiles: any;
@@ -31,6 +33,7 @@ export class ItemEditComponent implements OnInit {
   imageIds: string[] = [];
   progress: number = 100;
   newCat: boolean = false;
+  newTech: boolean = false;
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -43,6 +46,7 @@ export class ItemEditComponent implements OnInit {
     imageId: new FormControl(''),
     imageName: new FormControl(''),
     newCategory: new FormControl(''),
+    newTech: new FormControl('')
   });
 
   constructor(
@@ -50,6 +54,7 @@ export class ItemEditComponent implements OnInit {
     private phUService: PhotoUploadService,
     private dialogRef: MatDialogRef<ItemEditComponent>,
     private catService: CategoryService,
+    private techService: TechService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.form.patchValue(data);
@@ -57,9 +62,12 @@ export class ItemEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.get('newCategory').reset();
+    this.form.get('newTech').reset();
     this.phUService.getImages();
     this.catService.getAll();
+    this.techService.getAll();
     this.catService.list$.subscribe((list) => (this.categoryOpt = list));
+    this.techService.list$.subscribe((list)=> this.techOpt = list)
   }
 
   onSubmit(): void {
@@ -134,7 +142,10 @@ export class ItemEditComponent implements OnInit {
   createNewCat(): void {
     if (this.form.get('newCategory').value != null) {
       this.catService.create({
-        id: '',
+        id: Math.random()
+        .toString(36)
+        .replace(/[^a-zA-Z0-9]+/g, '')
+        .substr(2, 10),
         name: this.form.get('newCategory').value,
         description: '',
       });
@@ -143,6 +154,19 @@ export class ItemEditComponent implements OnInit {
       this.newCat = false;
     } else {
       return;
+    }
+  }
+  createNewTech(): void {
+    if(this.form.get('newTech').value != null){
+      this.techService.create({id: Math.random()
+        .toString(36)
+        .replace(/[^a-zA-Z0-9]+/g, '')
+        .substr(2, 10), name: this.form.get('newTech').value });
+        this.techService.getAll();
+        this.form.get('newTech').reset();
+        this.newTech = false;
+    } else {
+      return
     }
   }
   // reverseString(string: string): void {
