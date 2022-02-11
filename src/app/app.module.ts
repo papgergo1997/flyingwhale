@@ -24,9 +24,11 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './pages/pageComponents/header/header.component';
+import { CategoryListComponent } from './pages/category-list/category-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent ],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

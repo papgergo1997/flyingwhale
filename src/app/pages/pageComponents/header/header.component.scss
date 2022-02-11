@@ -1,0 +1,46 @@
+@import "/src/assets/scss/variables/fonts";
+@import "/src/assets/scss/variables/colors";
+html {
+  margin: 0;
+}
+
+.header {
+  height: 100%;
+
+  .nav-bar {
+    height: 40px;
+    background-color: $nav-gray;
+    color: whitesmoke;
+    .nav-top {
+      .active {
+        color: $primary-yellow;
+      }
+      .item-top {
+        list-style: none;
+        .link-top {
+          text-decoration: none;
+        }
+      }
+    }
+    .user {
+      font-family: $nav-font;
+      position: absolute;
+      right: 70px;
+      margin: 0 0 0 5px;
+    }
+    .person-icon {
+      position: absolute;
+      right: 15px;
+    }
+    .person-icon:hover {
+      cursor: pointer;
+      color: $primary-yellow;
+    }
+    .sidenav-btn {
+      height: 40px;
+    }
+  }
+  .active {
+    color: $primary-yellow;
+  }
+}
