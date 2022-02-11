@@ -54,8 +54,12 @@
             formControlName="newCategory"
           />
         </mat-form-field>
+
         <button class="add-btn" (click)="createNewCat()">
-          <mat-icon>check</mat-icon>
+          <mat-icon class="check-icon">check</mat-icon>
+        </button>
+        <button class="close-btn" (click)="newCat=false">
+          <mat-icon class="close-icon">close</mat-icon>
         </button>
       </div>
       <mat-form-field>
