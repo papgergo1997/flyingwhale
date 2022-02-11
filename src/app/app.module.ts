@@ -25,10 +25,11 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './pages/pageComponents/header/header.component';
-import { CategoryListComponent } from './pages/category-list/category-list.component';
+import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
+import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent ],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
