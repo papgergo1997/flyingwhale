@@ -30,8 +30,7 @@ export class ItemEditComponent implements OnInit {
   imageNames: string[] = [];
   imageIds: string[] = [];
   progress: number = 100;
-  newCat: boolean =false;
-
+  newCat: boolean = false;
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -43,7 +42,7 @@ export class ItemEditComponent implements OnInit {
     previewImage: new FormControl(''),
     imageId: new FormControl(''),
     imageName: new FormControl(''),
-    newCategory: new FormControl('')
+    newCategory: new FormControl(''),
   });
 
   constructor(
@@ -57,11 +56,10 @@ export class ItemEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.form.get('newCategory').reset();
     this.phUService.getImages();
-    this.catService.getAll()
-    this.catService.list$.subscribe((list)=> this.categoryOpt = list);
-
+    this.catService.getAll();
+    this.catService.list$.subscribe((list) => (this.categoryOpt = list));
   }
 
   onSubmit(): void {
@@ -88,10 +86,9 @@ export class ItemEditComponent implements OnInit {
     const previewFile = this.selectedPreviewFiles;
     this.selectedPreviewFiles = undefined;
     this.currentPreviewPhoto = new Photo(previewFile);
-    this.phUService.progress.subscribe((value)=>this.progress = value)
+    this.phUService.progress.subscribe((value) => (this.progress = value));
     this.upload(this.currentPhoto, false);
     this.upload(this.currentPreviewPhoto, true);
-
   }
 
   upload(photo: Photo, preview: boolean): void {
@@ -135,11 +132,22 @@ export class ItemEditComponent implements OnInit {
   }
 
   createNewCat(): void {
-    this.catService.create({id: '', name: this.form.get('newCategory').value, description: ''})
-    this.catService.getAll()
-    this.form.get('newCategory').reset();
-    this.newCat = false;
+    if (this.form.get('newCategory').value != null) {
+      this.catService.create({
+        id: '',
+        name: this.form.get('newCategory').value,
+        description: '',
+      });
+      this.catService.getAll();
+      this.form.get('newCategory').reset();
+      this.newCat = false;
+    } else {
+      return;
+    }
   }
+  // reverseString(string: string): void {
+  //   console.log(string.split('').reverse().join())
+  // }
 
   close(): void {
     this.dialogRef.close();

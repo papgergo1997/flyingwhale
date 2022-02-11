@@ -42,28 +42,32 @@
             opt.name
           }}</mat-option>
         </mat-select>
-        <button mat-button class="add-btn" (click)="newCat = true">
-          <mat-icon>add</mat-icon>
-        </button>
       </mat-form-field>
-      <mat-form-field *ngIf="newCat" fxLayout="row">
-        <input
-          matInput
-          placeholder="New Category"
-          formControlName="newCategory"
-        />
-        <button mat-button class="add-btn" (click)="createNewCat()">
+      <button class="add-btn" (click)="newCat = true">
+        <mat-icon class="add-icon">add</mat-icon>
+      </button>
+      <div *ngIf="newCat">
+        <mat-form-field fxLayout="row">
+          <input
+            matInput
+            placeholder="New Category"
+            formControlName="newCategory"
+          />
+        </mat-form-field>
+        <button class="add-btn" (click)="createNewCat()">
           <mat-icon>check</mat-icon>
         </button>
-      </mat-form-field>
+      </div>
       <mat-form-field>
         <mat-select matInput placeholder="Technique" formControlName="tech">
           <mat-option *ngFor="let opt of techOpt" [value]="opt">{{
             opt
           }}</mat-option>
         </mat-select>
-        <button mat-button class="add-btn"><mat-icon>add</mat-icon></button>
       </mat-form-field>
+      <button class="add-btn">
+        <mat-icon class="add-icon">add</mat-icon>
+      </button>
     </div>
     <div fxFlex="50" fxLayout="column">
       <label>Image</label>
@@ -109,7 +113,9 @@
         </div>
       </div>
 
-      <button class="upload-btn" mat-button (click)="onUpload()">Upload</button>
+      <button class="upload-button" mat-button (click)="onUpload()">
+        Upload
+      </button>
     </div>
     <div fxLayout="row" class="btn-group">
       <button
