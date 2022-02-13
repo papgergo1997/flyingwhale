@@ -18,7 +18,13 @@
   background-color: $primary-green;
   color: whitesmoke;
 }
+.table-row:nth-child(even) {
+  background-color: rgb(230, 230, 230);
 
+}
+mat-menu{
+  border-top:0;
+}
 .table-cell {
   font-family: $main-font;
   font-size: small;

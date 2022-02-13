@@ -24,12 +24,14 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from './pages/pageComponents/header/header.component';
+import { HeaderComponent } from './pages/pageComponents/admin-header/header.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MatSidenavModule} from '@angular/material/sidenav'
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent ],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -52,6 +54,7 @@ import { CategoryEditComponent } from './pages/admin/category-list/category-edit
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     NgbModule,
+    MatSidenavModule
   ],
   exports:[NgxPhotoEditorModule],
   providers: [],
