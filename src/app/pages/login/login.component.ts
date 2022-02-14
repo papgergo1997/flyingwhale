@@ -13,12 +13,31 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
   errorMessage: string = '';
+  isLoading: boolean = false;
+  error: string;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
   login() {
+    this.isLoading = true;
+    this.authService
+      .login(
+        this.loginForm.get('email').value,
+        this.loginForm.get('password').value
+      )
+      .subscribe(
+        (resData) => {
+          console.log(resData);
+          this.isLoading = false;
+        },
+        (errorMessage) => {
+          console.log(errorMessage);
+          this.error = errorMessage
+          this.isLoading = false;
+        }
+      );
     // let user;
     // this.authService.auth(
     //   this.loginForm.get('email')?.value,
