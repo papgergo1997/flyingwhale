@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { exhaustMap, map, take } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,33 +15,33 @@ export class BaseService<T extends { id: string }> {
 
   constructor(
     public http: HttpClient,
+    public authService: AuthService,
     @Inject('entityName') entityName: string
   ) {
     this.URL = `${this.baseURL}/${entityName}`;
     this.getAll();
   }
 
-  getAll():void {
-    this.http
-      .get(`${this.URL}.json`)
-      .pipe(
-        map((resp) => {
-          const arr = [];
-          for (const key in resp) {
-            if (resp.hasOwnProperty(key)) {
-              arr.push({ ...resp[key], id: key });
-            }
+  getAll(): void {
+    this.authService.currentUser.pipe(
+      take(1),
+      exhaustMap((user) => {
+        return this.http.get(`${this.URL}.json?auth=${user.token}`);
+      }),
+      map((resp) => {
+        const arr = [];
+        for (const key in resp) {
+          if (resp.hasOwnProperty(key)) {
+            arr.push({ ...resp[key], id: key });
           }
-          return arr;
-        })
-      )
-      .subscribe((list) => this.list$.next(list));
+        }
+        return arr;
+      })
+    ).subscribe(list=>this.list$.next(list));
   }
 
   create(doc: T): void {
-    this.http
-      .post<T>(`${this.URL}.json`, doc)
-      .subscribe(() => this.getAll());
+    this.http.post<T>(`${this.URL}.json`, doc).subscribe(() => this.getAll());
   }
 
   update(doc: T): void {
@@ -54,5 +55,4 @@ export class BaseService<T extends { id: string }> {
       .delete(`${this.URL}/${doc.id}.json`)
       .subscribe(() => this.getAll());
   }
-
 }

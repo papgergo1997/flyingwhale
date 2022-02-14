@@ -10,7 +10,8 @@ import { User } from '../model/user';
   providedIn: 'root',
 })
 export class AuthService {
-  currentUser = new BehaviorSubject<any>('');
+  currentUser = new BehaviorSubject<User>(null);
+
   private expirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}

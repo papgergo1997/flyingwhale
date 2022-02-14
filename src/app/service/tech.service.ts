@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tech } from '../model/tech';
+import { AuthService } from './auth.service';
 import { BaseService } from './base.service';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { BaseService } from './base.service';
 })
 export class TechService extends BaseService<Tech>  {
 
-  constructor(public http: HttpClient) {
-    super(http, 'techs');
+  constructor(public http: HttpClient, public authService: AuthService) {
+    super(http, authService, 'techs');
    }
 }
