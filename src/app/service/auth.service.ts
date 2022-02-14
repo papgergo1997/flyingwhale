@@ -11,6 +11,7 @@ import { User } from '../model/user';
 })
 export class AuthService {
   currentUser = new BehaviorSubject<any>('');
+  private expirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -37,10 +38,18 @@ export class AuthService {
       );
   }
 
-  logout(){
+  logout(): void {
     this.currentUser.next(null)
     localStorage.removeItem('user')
     this.router.navigate(['/home'])
+    if (this.expirationTimer){
+      clearTimeout(this.expirationTimer)
+    }
+    this.expirationTimer = null;
+  }
+
+  autoLogout(expirationDuration: number): void {
+    this.expirationTimer = setTimeout(()=> this.logout(), expirationDuration);
   }
 
   get isLoggedIn(): boolean{
@@ -57,6 +66,8 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.currentUser.next(user);
+    this.autoLogout(expiresIn * 1000)
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   private handleError(errorRes: HttpErrorResponse): Observable<any> {
