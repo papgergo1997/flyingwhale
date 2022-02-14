@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ItemListComponent } from './pages/admin/item-list/item-list.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   { path: 'items', component: ItemListComponent },
   { path: 'categorys', component: CategoryListComponent },

@@ -28,10 +28,11 @@ import { HeaderComponent } from './pages/pageComponents/admin-header/header.comp
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MatSidenavModule} from '@angular/material/sidenav'
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { LoginComponent } from './pages/login/login.component'
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent ],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent, LoginComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
