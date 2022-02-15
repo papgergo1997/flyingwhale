@@ -13,7 +13,7 @@
     fxLayout="row wrap"
     [formGroup]="form"
   >
-    <div fxFlex="50">
+    <div class="form-section" fxFlex="100" fxFlex.gt-sm="45"  fxLayout="column">
       <mat-form-field *ngIf="this.form.get('id').value != '0'">
         <input matInput placeholder="Id" formControlName="id" />
       </mat-form-field>
@@ -36,16 +36,18 @@
           formControlName="description"
         />
       </mat-form-field>
-      <mat-form-field>
-        <mat-select matInput placeholder="Category" formControlName="category">
-          <mat-option *ngFor="let opt of categoryOpt" [value]="opt.name">{{
-            opt.name
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button class="add-btn" (click)="newCat = true">
-        <mat-icon class="add-icon">add</mat-icon>
-      </button>
+      <div fxFlex>
+        <mat-form-field>
+          <mat-select matInput placeholder="Category" formControlName="category">
+            <mat-option *ngFor="let opt of categoryOpt" [value]="opt.name">{{
+              opt.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button class="add-btn" (click)="newCat = true">
+          <mat-icon class="add-icon">add</mat-icon>
+        </button>
+      </div>
       <div *ngIf="newCat">
         <mat-form-field fxLayout="row">
           <input
@@ -62,16 +64,18 @@
           <mat-icon class="close-icon">close</mat-icon>
         </button>
       </div>
-      <mat-form-field>
-        <mat-select matInput placeholder="Technique" formControlName="tech">
-          <mat-option *ngFor="let opt of techOpt" [value]="opt.name">{{
-            opt.name
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button class="add-btn" (click)="newTech = true">
-        <mat-icon class="add-icon">add</mat-icon>
-      </button>
+      <div fxFlex>
+        <mat-form-field>
+          <mat-select matInput placeholder="Technique" formControlName="tech">
+            <mat-option *ngFor="let opt of techOpt" [value]="opt.name">{{
+              opt.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button class="add-btn" (click)="newTech = true">
+          <mat-icon class="add-icon">add</mat-icon>
+        </button>
+      </div>
       <div *ngIf="newTech">
         <mat-form-field fxLayout="row">
           <input
@@ -89,13 +93,13 @@
         </button>
       </div>
     </div>
-    <div fxFlex="50" fxLayout="column">
+    <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column">
       <label>Image</label>
       <img
         *ngIf="progress == 100 && form.get('image').value != ''"
         src="{{ form.get('image').value }}"
         alt="{{ form.get('image').value }}"
-        style="width: 100px"
+        class="image"
       />
       <label>Preview Image</label>
       <img

@@ -1,6 +1,7 @@
 @import "/src/assets/scss/variables/colors";
 .form {
-  width: 490px;
+  width: 100%;
+
 }
 .progress-bar{
   border-radius: 5px !important;
@@ -40,6 +41,10 @@
     left: 1px;
   }
 }
+.image{
+  max-height: 100px;
+  width: 100px;
+}
 .upload-button{
   background-color: $primary-green;
   color: whitesmoke;
@@ -70,5 +75,14 @@
   }
   100% {
     right: 0;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .form{
+    width: 490px;
+    .form-section{
+      margin:  auto 10px;
+    }
   }
 }
