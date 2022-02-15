@@ -24,8 +24,10 @@ export class PhotoUploadService {
   firebaseApp = initializeApp(environment.firebase);
   storage = getStorage(this.firebaseApp);
   storageRef = ref(this.storage);
+  currentUser: any;
 
   constructor(private http: HttpClient) {
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.getImages();
   }
 
@@ -77,12 +79,12 @@ export class PhotoUploadService {
   }
   saveImageData(doc: Photo): void {
     this.http
-      .post<Photo>(`${this.dbURL}.json`, doc)
+      .post<Photo>(`${this.dbURL}.json?auth=${this.currentUser._token}`, doc)
       .subscribe(() => this.getImages());
   }
   getImages(): void {
     this.http
-      .get(`${this.dbURL}.json`)
+      .get(`${this.dbURL}.json?auth=${this.currentUser._token}`)
       .pipe(
         map((resp) => {
           const arr = [];
@@ -98,7 +100,7 @@ export class PhotoUploadService {
   }
   deleteImageFrDB(key: string): void {
     this.http
-      .delete(`${this.dbURL}/${key}.json`)
+      .delete(`${this.dbURL}/${key}.json?auth=${this.currentUser._token}`)
       .subscribe(() => this.getImages());
   }
   deleteImageFrStAndDB(name: string, key: string): void {

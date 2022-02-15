@@ -74,13 +74,13 @@ export class BaseService<T extends { id: string }> {
 
   update(doc: T): void {
     this.http
-      .patch(`${this.URL}/${doc.id}.json`, doc)
+      .patch(`${this.URL}/${doc.id}.json?auth=${this.currentUser._token}`, doc)
       .subscribe(() => this.getAll());
   }
 
   delete(doc: T): void {
     this.http
-      .delete(`${this.URL}/${doc.id}.json`)
+      .delete(`${this.URL}/${doc.id}.json?auth=${this.currentUser._token}`)
       .subscribe(() => this.getAll());
   }
 }
