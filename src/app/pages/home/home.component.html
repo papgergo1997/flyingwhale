@@ -16,14 +16,16 @@
           <button mat-button href="" class="link-side">Illustrations</button>
         </li>
         <li *ngIf="currentUser" class="item-side--admin">
-          <button mat-button routerLink="/items" class="link-side">Admin</button>
+          <button mat-button routerLink="/items" class="link-side">
+            Admin
+          </button>
         </li>
       </ul>
     </nav>
   </mat-drawer>
 
-  <div class="home-content" fxLayout="row wrap">
-    <nav fxFlex  class="top-nav">
+  <div class="home-content">
+    <nav  class="top-nav">
       <ul fxLayout="row" fxLayoutAlign="end" class="nav-top">
         <li class="item-top">
           <button mat-button href="" class="link-top">Gallery</button>
@@ -41,13 +43,17 @@
           <button mat-button routerLink="/items" class="link-top">Admin</button>
         </li>
       </ul>
-      <button class="menu-btn" type="button" mat-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+      <button
+        class="menu-btn"
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
     </nav>
-    <header class="header">
-      <img class="header-bg" src="../../assets/img/dia-web-header.jpg" alt="" srcset="">
-    </header>
+    <main class="home-main" fxLayout="row wrap">
+      <header class="header"></header>
+    </main>
   </div>
-
 </mat-drawer-container>
