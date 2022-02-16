@@ -3,6 +3,7 @@ export interface Item {
   name: string;
   description: string;
   category: string;
+  date: string;
   tech: string;
   image: string;
   previewImage: string;

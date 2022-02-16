@@ -43,6 +43,7 @@ export class ItemEditComponent implements OnInit {
     tech: new FormControl(''),
     image: new FormControl(''),
     previewImage: new FormControl(''),
+    date: new FormControl(''),
     imageId: new FormControl(''),
     imageName: new FormControl(''),
     newCategory: new FormControl(''),

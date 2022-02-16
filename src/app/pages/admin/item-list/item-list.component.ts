@@ -21,6 +21,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
     category: '',
     tech: '',
     image: '',
+    date: '',
     previewImage: '',
     imageId: '',
     imageName: '',
@@ -28,7 +29,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   @ViewChild('paginator') paginator: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
-  columns: string[] = ['name', 'category', 'tech', 'previewImage', 'edit'];
+  columns: string[] = ['name', 'category', 'tech', 'date', 'previewImage', 'edit'];
 
   constructor(
     private iService: ItemService,
