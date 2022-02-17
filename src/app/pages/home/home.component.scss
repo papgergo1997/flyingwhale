@@ -1,3 +1,4 @@
+@import "/src/assets/scss/variables/fonts";
 .home-container {
   width: 100vw;
   height: 100vh;
@@ -6,44 +7,40 @@
 .home-content {
   display: flex;
   height: 100%;
-  align-items: center;
-  justify-content: center;
-  .top-nav {
-    width: 100%;
-    background-color: rgba(30, 30, 30, 0.8);
-    position: fixed;
-    top: 0;
-    .nav-top {
-      display: none !important;
-      [class^="item-top"] {
-        list-style: none;
-        .link-top {
-          text-decoration: none;
-          color: whitesmoke;
+  width: 100%;
+
+  .header {
+    height: 270px;
+    background-color: rgb(106, 168, 192);
+    // background-attachment: fixed;
+    .top-nav {
+      z-index: 0;
+      padding: 0;
+      .nav-top {
+        padding: 0;
+        display: none !important;
+        [class^="item-top"] {
+          list-style: none;
+          margin: auto 10px;
+          .link-top {
+            font-family: $main-font;
+            font-size: medium;
+            text-decoration: none;
+            color: rgb(240, 240, 240);
+          }
         }
       }
-    }
-    .menu-btn {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 1;
+      .menu-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
   }
 }
 .home-main {
   width: 100%;
   height: 100%;
-  .header {
-    height: 400px;
-    width: 100vw;
-    background-image: url(/assets/img/dia-web-header.jpg);
-    background-size: 600px;
-    background-position: center;
-    // background-attachment: fixed;
-    box-shadow: 0 0 9px black;
-    z-index: -1;
-  }
 }
 
 .home-sidenav {
@@ -65,17 +62,15 @@
 
 @media screen and (min-width: 600px) {
   .home-content {
-    .top-nav {
-      .nav-top {
-        display: flex !important;
-      }
-      .menu-btn {
-        display: none;
-      }
-    }
-    .home-main{
-      .header{
-        background-size: 800px;
+    .header {
+      background-size: 800px;
+      .top-nav {
+        .nav-top {
+          display: flex !important;
+        }
+        .menu-btn {
+          display: none;
+        }
       }
     }
   }
