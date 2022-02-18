@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ItemListComponent } from './pages/admin/item-list/item-list.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/main/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuardService, LoginGuardService } from './service/auth-guard.service';
 

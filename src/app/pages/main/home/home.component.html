@@ -1,0 +1,33 @@
+<mat-drawer-container class="home-container" autosize>
+  <mat-drawer #drawer class="home-sidenav" mode="over">
+    <p>FlyingWhale</p>
+    <nav class="side-nav">
+      <ul fxLayout="column" fxLayoutAlign="center center" class="nav-side">
+        <li class="item-side">
+          <button mat-button href="" class="link-side">Gallery</button>
+        </li>
+        <li class="item-side">
+          <button mat-button href="" class="link-side">About</button>
+        </li>
+        <li class="item-side">
+          <button mat-button href="" class="link-side">Logos</button>
+        </li>
+        <li class="item-side">
+          <button mat-button href="" class="link-side">Illustrations</button>
+        </li>
+        <li *ngIf="currentUser" class="item-side--admin">
+          <button mat-button routerLink="/items" class="link-side">
+            Admin
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </mat-drawer>
+
+  <div class="home-content" fxLayout="row wrap">
+    <app-main-header fxFlex="100" class="header" fxLayout="row" fxLayoutAlign="center end" [drawer]="drawer"></app-main-header>
+    <main class="home-main" fxLayout="row wrap">
+      <app-item-card-container  fxLayoutAlign="center" fxFlex="100" fxLayout="row wrap"></app-item-card-container>
+    </main>
+  </div>
+</mat-drawer-container>

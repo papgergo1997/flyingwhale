@@ -1,0 +1,31 @@
+<header fxFlex="100" class="header" fxLayout="row" fxLayoutAlign="center end">
+  <nav class="top-nav">
+    <ul class="nav-top">
+      <li class="item-top">
+        <button mat-button href="" class="link-top">Gallery</button>
+      </li>
+      <li class="item-top">
+        <button mat-button href="" class="link-top">About</button>
+      </li>
+      <li class="item-top">
+        <button mat-button href="" class="link-top">Logos</button>
+      </li>
+      <li class="item-top">
+        <button mat-button href="" class="link-top">Illustrations</button>
+      </li>
+      <li *ngIf="currentUser" class="item-top--admin">
+        <button mat-button routerLink="/items" class="link-top">
+          Admin
+        </button>
+      </li>
+    </ul>
+    <button
+      class="menu-btn"
+      type="button"
+      mat-button
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </nav>
+</header>

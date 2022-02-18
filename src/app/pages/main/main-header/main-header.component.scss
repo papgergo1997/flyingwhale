@@ -1,0 +1,42 @@
+@import "/src/assets/scss/variables/fonts";
+.header {
+  height: 270px;
+  background-color: rgb(106, 168, 192);
+  // background-attachment: fixed;
+  .top-nav {
+    z-index: 0;
+    padding: 0;
+    .nav-top {
+      padding: 0;
+      display: none !important;
+      [class^="item-top"] {
+        list-style: none;
+        margin: auto 10px;
+        .link-top {
+          font-family: $main-font;
+          font-size: medium;
+          text-decoration: none;
+          color: rgb(240, 240, 240);
+        }
+      }
+    }
+    .menu-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+@media screen and (min-width: 600px) {
+  .header {
+    background-size: 800px;
+    .top-nav {
+      .nav-top {
+        display: flex !important;
+      }
+      .menu-btn {
+        display: none;
+      }
+    }
+  }
+}

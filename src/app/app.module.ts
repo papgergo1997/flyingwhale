@@ -24,15 +24,19 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from './pages/pageComponents/admin-header/header.component';
+import { HeaderComponent } from './pages/admin/admin-header/header.component';
 import { CategoryListComponent } from './pages/admin/category-list/category-list.component';
 import { CategoryEditComponent } from './pages/admin/category-list/category-edit/category-edit.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/main/home/home.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
-import { LoginComponent } from './pages/login/login.component'
+import { LoginComponent } from './pages/login/login.component';
+import { AboutComponent } from './pages/main/about/about.component';
+import { ItemCardComponent } from './pages/main/item-card/item-card.component';
+import { ItemCardContainerComponent } from './pages/main/item-card-container/item-card-container.component';
+import { MainHeaderComponent } from './pages/main/main-header/main-header.component'
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent, LoginComponent ],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

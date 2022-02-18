@@ -25,26 +25,9 @@ export class BaseService<T extends { id: string }> {
   }
 
   getAll(): void {
-    // this.http
-    //   .get(`${this.URL}.json?auth=${this.currentUser._token}`)
-    //   .pipe(
-    //     map((resp) => {
-    //       const arr = [];
-    //       for (const key in resp) {
-    //         if (resp.hasOwnProperty(key)) {
-    //           arr.push({ ...resp[key], id: key });
-    //         }
-    //       }
-    //       return arr;
-    //     })
-    //   )
-    //   .subscribe((list) => this.list$.next(list));
-     this.authService.currentUser
+     this.http
+       .get(`${this.URL}.json`)
        .pipe(
-         take(1),
-         exhaustMap((user) => {
-           return this.http.get(`${this.URL}.json?auth=${user.token}`);
-         }),
          map((resp) => {
            const arr = [];
            for (const key in resp) {
@@ -56,6 +39,23 @@ export class BaseService<T extends { id: string }> {
          })
        )
        .subscribe((list) => this.list$.next(list));
+    //  this.authService.currentUser
+    //    .pipe(
+    //      take(1),
+    //      exhaustMap((user) => {
+    //        return this.http.get(`${this.URL}.json?auth=${user.token}`);
+    //      }),
+    //      map((resp) => {
+    //        const arr = [];
+    //        for (const key in resp) {
+    //          if (resp.hasOwnProperty(key)) {
+    //            arr.push({ ...resp[key], id: key });
+    //          }
+    //        }
+    //        return arr;
+    //      })
+    //    )
+    //    .subscribe((list) => this.list$.next(list));
   }
 
   create(doc: T): void {
