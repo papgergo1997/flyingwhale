@@ -3,6 +3,10 @@
   height: 270px;
   background-color: rgb(106, 168, 192);
   // background-attachment: fixed;
+  .logo-img{
+    width: 200px;
+    height: 180px;
+  }
   .top-nav {
     z-index: 0;
     padding: 0;
@@ -26,6 +30,9 @@
       right: 0;
     }
   }
+}
+.active{
+  color: rgb(211, 224, 20) !important;
 }
 @media screen and (min-width: 600px) {
   .header {

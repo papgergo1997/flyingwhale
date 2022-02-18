@@ -1,14 +1,21 @@
-.image{
-  width: 400px;
-  height: 300px;
-  background-size: 100%;
-  background-position: center;
-  opacity: 100%;
-  transition: background opacity 300ms;
-  transition: 300ms;
-}
-.image:hover{
-  cursor: pointer;
-  background-size: 110%;
-  opacity: 50%;
+.card {
+  border: none;
+  .image {
+    width: 400px;
+    height: 300px;
+    background-size: 100%;
+    background-position: center;
+    opacity: 100%;
+    transition: background opacity 300ms;
+    transition: 300ms;
+    .item-name {
+      border: transparent;
+      background-color: transparent;
+    }
+  }
+  .image:hover {
+    cursor: pointer;
+    background-size: 105%;
+    opacity: 50%;
+  }
 }
