@@ -54,8 +54,16 @@
           Illustration
         </button>
       </li>
-      <li *ngIf="currentUser" class="item-top--admin">
-        <button mat-button routerLink="/items" class="link-top">Admin</button>
+      <li *ngIf="!isLoggedIn()" class="item-top--admin">
+        <button mat-button routerLink="/items" class="link-top">Login</button>
+      </li>
+      <li *ngIf="isLoggedIn()" class="item-top--admin">
+        <button mat-button [matMenuTriggerFor]="menu" class="link-top"><mat-icon>person</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/items">Admin</button>
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
+
       </li>
     </ul>
     <button class="menu-btn" type="button" mat-button (click)="drawer.toggle()">

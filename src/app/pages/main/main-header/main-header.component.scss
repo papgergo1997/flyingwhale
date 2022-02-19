@@ -1,7 +1,7 @@
 @import "/src/assets/scss/variables/fonts";
 .header {
   height: 270px;
-  background-color: rgb(106, 168, 192);
+  background-color: rgb(183, 218, 212);
   // background-attachment: fixed;
   .logo-img{
     width: 200px;
@@ -20,8 +20,13 @@
           font-family: $main-font;
           font-size: medium;
           text-decoration: none;
-          color: rgb(240, 240, 240);
+          color: black;
         }
+      }
+      .item-top--admin{
+        position: absolute;
+        top: 0;
+        right: 0;
       }
     }
     .menu-btn {
@@ -32,7 +37,7 @@
   }
 }
 .active{
-  color: rgb(211, 224, 20) !important;
+  color: rgb(255, 255, 255) !important;
 }
 @media screen and (min-width: 600px) {
   .header {
