@@ -1,19 +1,19 @@
-<mat-drawer-container class="home-container" autosize>
-  <mat-drawer #drawer class="home-sidenav" mode="over">
+<mat-drawer-container class="page-container" autosize>
+  <mat-drawer #drawer class="drawer" mode="over">
     <p>FlyingWhale</p>
     <nav class="side-nav">
       <ul fxLayout="column" fxLayoutAlign="center center" class="nav-side">
         <li class="item-side">
-          <button mat-button href="" class="link-side">Gallery</button>
+          <button mat-button routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Gallery</button>
         </li>
         <li class="item-side">
-          <button mat-button href="" class="link-side">About</button>
+          <button mat-button routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">About</button>
         </li>
         <li class="item-side">
           <button mat-button routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Home</button>
         </li>
         <li class="item-side">
-          <button mat-button href="" class="link-side">Illustrations</button>
+          <button mat-button routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Illustrations</button>
         </li>
         <li *ngIf="currentUser" class="item-side--admin">
           <button mat-button routerLink="/items" class="link-side">
@@ -24,9 +24,9 @@
     </nav>
   </mat-drawer>
 
-  <div class="home-content" fxLayout="row wrap">
+  <div class="page-content" fxLayoutAlign="center" fxLayout="row wrap">
     <app-main-header fxFlex="100" class="header" fxLayout="row" fxLayoutAlign="center end" [drawer]="drawer"></app-main-header>
-    <main class="home-main" fxLayout="row wrap">
+    <main fxFlex="100" fxFlex.gt-md="90" class="home-main" fxLayout="row wrap">
       <app-item-card-container  fxLayoutAlign="center" fxFlex="100" fxLayout="row wrap"></app-item-card-container>
     </main>
   </div>
