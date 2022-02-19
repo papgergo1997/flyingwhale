@@ -8,8 +8,16 @@
         color: black;
       }
     }
+    .item-side--admin {
+      position: absolute;
+      bottom: 30px;
+      .link-side {
+        font-weight: bold;
+      }
+    }
   }
 }
-.active{
+
+.active {
   color: rgb(255, 255, 255) !important;
 }

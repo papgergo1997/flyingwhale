@@ -12,10 +12,17 @@
     <li class="item-side">
       <button mat-button routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Illustrations</button>
     </li>
-    <li *ngIf="currentUser" class="item-side--admin">
-      <button mat-button routerLink="/items" class="link-side">
-        Admin
+    <li *ngIf="!isLoggedIn()" class="item-side--admin">
+      <button mat-button routerLink="/login" class="link-side">
+        Login
       </button>
+    </li>
+    <li *ngIf="isLoggedIn()" class="item-side--admin">
+      <button mat-button [matMenuTriggerFor]="menu" class="link-top"><mat-icon>person</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/items">Admin</button>
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
     </li>
   </ul>
 </nav>

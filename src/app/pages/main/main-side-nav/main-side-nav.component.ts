@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-main-side-nav',
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainSideNavComponent implements OnInit {
 
-  currentUser: boolean = true
-  constructor() { }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn;
+  }
+
+  logout(): void{
+    this.authService.logout();
   }
 
 }
