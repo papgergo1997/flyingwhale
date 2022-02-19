@@ -33,10 +33,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { AboutComponent } from './pages/main/about/about.component';
 import { ItemCardComponent } from './pages/main/item-card/item-card.component';
 import { ItemCardContainerComponent } from './pages/main/item-card-container/item-card-container.component';
-import { MainHeaderComponent } from './pages/main/main-header/main-header.component'
+import { MainHeaderComponent } from './pages/main/main-header/main-header.component';
+import { MainSideNavComponent } from './pages/main/main-side-nav/main-side-nav.component'
 
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent ],
+  declarations: [AppComponent, ItemListComponent, ItemEditComponent, HeaderComponent, CategoryListComponent, CategoryEditComponent, HomeComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,

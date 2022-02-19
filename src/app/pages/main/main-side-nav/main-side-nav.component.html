@@ -1,0 +1,21 @@
+<nav class="side-nav">
+  <ul fxLayout="column" fxLayoutAlign="center center" class="nav-side">
+    <li class="item-side">
+      <button mat-button routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Gallery</button>
+    </li>
+    <li class="item-side">
+      <button mat-button routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">About</button>
+    </li>
+    <li class="item-side">
+      <button mat-button routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Home</button>
+    </li>
+    <li class="item-side">
+      <button mat-button routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Illustrations</button>
+    </li>
+    <li *ngIf="currentUser" class="item-side--admin">
+      <button mat-button routerLink="/items" class="link-side">
+        Admin
+      </button>
+    </li>
+  </ul>
+</nav>

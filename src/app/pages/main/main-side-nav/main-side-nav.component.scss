@@ -1,0 +1,15 @@
+.side-nav {
+  .nav-side {
+    padding: 0;
+    [class^="item-side"] {
+      list-style: none;
+      .link-side {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+}
+.active{
+  color: rgb(255, 255, 255) !important;
+}

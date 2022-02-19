@@ -16,7 +16,7 @@
 
 .drawer {
   padding: 20px;
-  background-color: rgba($color: white, $alpha: 0.8);
+  background-color: rgba($color: rgb(183, 218, 212), $alpha: 0.8);
   .side-nav {
     .nav-side {
       padding: 0;
@@ -30,9 +30,7 @@
     }
   }
 }
-.active{
-  color: rgb(211, 224, 20) !important;
-}
+
 @media screen and (min-width: 600px) {
   .nav-side {
     display: none;
