@@ -1,7 +1,8 @@
 @import "/src/assets/scss/variables/fonts";
+@import "/src/assets/scss/variables/colors";
 .header {
   height: 270px;
-  background-color: rgb(183, 218, 212);
+  background-color: $primary-blue;
   // background-attachment: fixed;
   .logo-img{
     width: 200px;

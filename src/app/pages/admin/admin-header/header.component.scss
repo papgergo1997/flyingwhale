@@ -1,47 +1,65 @@
 @import "/src/assets/scss/variables/fonts";
 @import "/src/assets/scss/variables/colors";
-html {
-  margin: 0;
-}
-
 .header {
-  height: 100%;
-
-  .nav-bar {
-    height: 40px;
-    background-color: $nav-gray;
-    color: whitesmoke;
+  height: 40px;
+  background-color: rgba($color: $primary-blue, $alpha: 0.8);
+  // background-attachment: fixed;
+  .logo{
+    display: none;
+  }
+  .logo-img{
+    width: 200px;
+    height: 180px;
+  }
+  .top-nav {
+    z-index: 0;
+    padding: 0;
     .nav-top {
-      .active {
-        color: $primary-yellow;
-      }
-      .item-top {
-        margin-top: 11px;
+      padding: 0;
+      display: none !important;
+      [class^="item-top"] {
         list-style: none;
+        margin: auto 10px;
         .link-top {
+          font-family: $main-font;
+          font-size: medium;
           text-decoration: none;
+          color: black;
+        }
+      }
+      .item-top--admin{
+        position: absolute;
+        top: 0;
+        right: 0;
+        .link-top {
+          font-weight: bold;
         }
       }
     }
-    .user {
-      font-family: $nav-font;
+    .menu-btn {
       position: absolute;
-      right: 70px;
-      margin: 0 0 0 5px;
-    }
-    .person-icon {
-      position: absolute;
-      right: 15px;
-    }
-    .person-icon:hover {
-      cursor: pointer;
-      color: $primary-yellow;
-    }
-    .sidenav-btn {
-      height: 40px;
+      top: 0;
+      right: 0;
     }
   }
-  .active {
-    color: $primary-yellow;
+}
+.active{
+  color: rgb(255, 255, 255) !important;
+}
+@media screen and (min-width: 600px) {
+  .header {
+    height: 270px;
+    background-size: 800px;
+    .logo{
+      display: flex;
+    }
+    .top-nav {
+      .nav-top {
+        display: flex !important;
+      }
+      .menu-btn {
+        display: none;
+      }
+    }
   }
 }

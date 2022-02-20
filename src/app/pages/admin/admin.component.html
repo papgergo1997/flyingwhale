@@ -1,2 +1,42 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+
+<mat-drawer-container class="page-container" autosize>
+  <mat-drawer #drawer class="drawer" mode="over">
+    <p>FlyingWhale logo</p>
+    <nav class="side-nav">
+      <ul fxLayout="column" fxLayoutAlign="center center" class="nav-side">
+        <li class="item-side">
+          <button mat-button routerLink="/admin/items" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Items</button>
+        </li>
+        <li class="item-side">
+          <button mat-button routerLink="/admin/categorys" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Categorys</button>
+        </li>
+        <li *ngIf="!isLoggedIn()" class="item-side--admin">
+          <button mat-button routerLink="/login" class="link-side">
+            Login
+          </button>
+        </li>
+        <li *ngIf="isLoggedIn()" class="item-side--admin">
+          <button mat-button [matMenuTriggerFor]="menu" class="link-top"><mat-icon>person</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/home">Home</button>
+              <button mat-menu-item (click)="onLogout()">Log out</button>
+            </mat-menu>
+        </li>
+      </ul>
+    </nav>
+
+  </mat-drawer>
+  <div class="page-content" fxLayoutAlign="center" fxLayout="row wrap">
+    <app-header fxFlex="100"
+      class="header"
+      fxLayout="row"
+      fxLayoutAlign="center end"
+      [drawer]="drawer">
+    </app-header>
+    <main fxFlex="100" fxFlex.gt-md="90" class="home-main" fxLayout="row wrap" fxLayoutAlign="center">
+      <router-outlet ></router-outlet>
+    </main>
+  </div>
+</mat-drawer-container>
+
+

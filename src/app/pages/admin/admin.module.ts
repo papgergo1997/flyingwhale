@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './admin-header/header.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -40,7 +41,8 @@ import { HeaderComponent } from './admin-header/header.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSidenavModule
   ],
   exports: [NgxPhotoEditorModule],
   providers: [],

@@ -1,4 +1,5 @@
 @import "/src/assets/scss/variables/fonts";
+@import "/src/assets/scss/variables/colors";
 .page-container {
   width: 100vw;
   height: 100vh;
@@ -16,7 +17,7 @@
 
 .drawer {
   padding: 20px;
-  background-color: rgba($color: rgb(183, 218, 212), $alpha: 0.8);
+  background-color: rgba($color: $primary-blue, $alpha: 0.8);
   .side-nav {
     .nav-side {
       padding: 0;

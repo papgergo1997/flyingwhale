@@ -2,13 +2,14 @@
 @import "/src/assets/scss/variables/colors";
 .list-container {
   height: 100vh;
-  background-image: linear-gradient(80deg, $primary-yellow, $primary-gray);
+  background-color: rgb(230, 230, 230);
 }
 .search-area {
   font-family: $secondary-font;
   margin: 20px;
+  margin-top: 40px;
   .search-label {
-    color: whitesmoke;
+    color: black;
   }
 }
 .add-btn {
@@ -23,6 +24,10 @@
   font-family: $main-font;
   font-size: small;
   overflow: hidden;
+}
+.table-row:nth-child(even) {
+  background-color: rgb(220, 220, 220);
+
 }
 .paginator {
   margin: 0 auto;

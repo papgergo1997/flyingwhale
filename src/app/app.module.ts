@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
@@ -20,7 +19,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { NgxPhotoEditorModule } from 'ngx-photo-editor';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './pages/main/home/home.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
@@ -41,7 +40,6 @@ import { ItemPageComponent } from './pages/main/home/item-page/item-page.compone
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    MatTableModule,
     MatButtonModule,
     MatPaginatorModule,
     MatInputModule,
@@ -50,7 +48,6 @@ import { ItemPageComponent } from './pages/main/home/item-page/item-page.compone
     MatDialogModule,
     MatSelectModule,
     ReactiveFormsModule,
-    NgxPhotoEditorModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
@@ -59,7 +56,7 @@ import { ItemPageComponent } from './pages/main/home/item-page/item-page.compone
     NgbModule,
     MatSidenavModule
   ],
-  exports:[NgxPhotoEditorModule],
+  exports:[],
   providers: [],
   bootstrap: [AppComponent],
 })
