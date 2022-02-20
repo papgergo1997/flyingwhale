@@ -4,7 +4,7 @@ html {
   margin: 0;
   padding: 0;
 }
-.header{
+.header {
   position: fixed;
   width: 100%;
   z-index: 1;
@@ -51,13 +51,22 @@ html {
     color: rgb(255, 255, 255) !important;
   }
 }
+.side-img {
+  display: none;
 
+  top: 0;
+  opacity: 20%;
+  box-shadow: 0 0 90px black;
+}
 
 @media screen and (min-width: 600px) {
-  .header{
+  .side-img {
+    display: flex;
+  }
+  .header {
     position: relative;
   }
-  .drawer{
+  .drawer {
     display: none;
   }
 }
