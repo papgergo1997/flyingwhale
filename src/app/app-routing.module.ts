@@ -7,6 +7,7 @@ import {
   LoginGuardService,
 } from './service/auth-guard.service';
 import { AboutComponent } from './pages/main/about/about.component';
+import { ItemPageComponent } from './pages/main/home/item-page/item-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
     canActivate: [LoginGuardService],
   },
   { path: 'home', component: HomeComponent },
+  {path: 'home/:id', component: ItemPageComponent},
   { path: 'about', component: AboutComponent },
   {
     path: 'admin',

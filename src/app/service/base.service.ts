@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { exhaustMap, map, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
@@ -56,6 +56,10 @@ export class BaseService<T extends { id: string }> {
     //      })
     //    )
     //    .subscribe((list) => this.list$.next(list));
+  }
+
+  get(id: string): Observable<any>{
+   return this.http.get(`${this.URL}/${id}.json`)
   }
 
   create(doc: T): void {
