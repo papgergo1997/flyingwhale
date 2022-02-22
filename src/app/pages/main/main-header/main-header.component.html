@@ -13,12 +13,12 @@
       <li class="item-top">
         <button
           mat-button
-          routerLink=""
+          routerLink="/home"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="link-top"
         >
-          Gallery
+          Home
         </button>
       </li>
       <li class="item-top">
@@ -35,12 +35,12 @@
       <li class="item-top">
         <button
           mat-button
-          routerLink="/home"
+          routerLink=""
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="link-top"
         >
-          Home
+          Portraits
         </button>
       </li>
       <li class="item-top">
@@ -51,19 +51,54 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="link-top"
         >
-          Illustration
+          Greeting cards\Prints
         </button>
+      </li>
+      <li class="item-top">
+        <button
+          mat-button
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="link-top"
+        >
+          Illustrations
+        </button>
+      </li>
+      <li class="item-top">
+        <button
+          mat-button
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="link-top"
+        >
+          Logos
+        </button>
+      </li>
+      <li class="item-top">
+        <button mat-button class="link-top" [matMenuTriggerFor]="more">
+          <b>More</b>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #more="matMenu">
+          <button mat-menu-item routerLink="">Calendars</button>
+          <button mat-menu-item routerLink="">T-shirts</button>
+          <button mat-menu-item routerLink="">Bags</button>
+          <button mat-menu-item routerLink="">Notebooks</button>
+        </mat-menu>
       </li>
       <li *ngIf="!isLoggedIn()" class="item-top--admin">
         <button mat-button routerLink="/login" class="link-top">Login</button>
       </li>
       <li *ngIf="isLoggedIn()" class="item-top--admin">
-        <button mat-button [matMenuTriggerFor]="menu" class="link-top"><mat-icon>person</mat-icon></button>
+        <button mat-button [matMenuTriggerFor]="menu" class="link-top">
+          <mat-icon>person</mat-icon>
+        </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="/admin/items">Admin</button>
           <button mat-menu-item (click)="logout()">Log out</button>
         </mat-menu>
-
       </li>
     </ul>
     <button class="menu-btn" type="button" mat-button (click)="drawer.toggle()">

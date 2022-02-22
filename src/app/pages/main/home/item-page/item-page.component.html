@@ -13,7 +13,9 @@
     ></app-main-header>
     <main fxFlex="100" fxFlex.gt-md="90" class="page-main" fxLayout="row wrap">
       <div *ngIf="item$ | async as item">
-        <img src="{{ item.previewImage }}" alt="" srcset="" />
+        <img src="{{ item.mainImage }}" alt="{{item.name}}" />
+        <div *ngFor="let image of item.images"><img src="{{ image }}" style="width: 300px;"></div>
+
         <p>{{item.name}}</p>
       </div>
       <app-item-card-container

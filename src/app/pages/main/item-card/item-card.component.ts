@@ -8,10 +8,12 @@ import { Item } from 'src/app/model/item';
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: Item;
+  images: any;
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -25,20 +25,20 @@ export class BaseService<T extends { id: string }> {
   }
 
   getAll(): void {
-     this.http
-       .get(`${this.URL}.json`)
-       .pipe(
-         map((resp) => {
-           const arr = [];
-           for (const key in resp) {
-             if (resp.hasOwnProperty(key)) {
-               arr.push({ ...resp[key], id: key });
-             }
-           }
-           return arr;
-         })
-       )
-       .subscribe((list) => this.list$.next(list));
+    this.http
+      .get(`${this.URL}.json`)
+      .pipe(
+        map((resp) => {
+          const arr = [];
+          for (const key in resp) {
+            if (resp.hasOwnProperty(key)) {
+              arr.push({ ...resp[key], id: key });
+            }
+          }
+          return arr;
+        })
+      )
+      .subscribe((list) => this.list$.next(list));
     //  this.authService.currentUser
     //    .pipe(
     //      take(1),
@@ -58,33 +58,69 @@ export class BaseService<T extends { id: string }> {
     //    .subscribe((list) => this.list$.next(list));
   }
 
-  get(id: string): Observable<any>{
-   return this.http.get(`${this.URL}/${id}.json`)
+  get(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/${id}.json`);
   }
 
   create(doc: T): void {
-    this.http
-      .post<T>(`${this.URL}.json?auth=${this.currentUser._token}`, doc)
-      .subscribe(() => this.getAll());
-    // this.authService.currentUser
-    //   .pipe(
-    //     take(1),
-    //     exhaustMap((user) => {
-    //       return this.http.post<T>(`${this.URL}.json?auth=${user.token}`, doc);
-    //     })
-    //   )
-    //
+    if (this.currentUser != null) {
+      this.http
+        .post<T>(`${this.URL}.json?auth=${this.currentUser._token}`, doc)
+        .subscribe(() => this.getAll());
+    } else {
+      this.authService.currentUser
+        .pipe(
+          take(1),
+          exhaustMap((user) => {
+            return this.http.post<T>(
+              `${this.URL}.json?auth=${user.token}`,
+              doc
+            );
+          })
+        )
+        .subscribe(() => this.getAll());
+    }
   }
 
   update(doc: T): void {
-    this.http
-      .patch(`${this.URL}/${doc.id}.json?auth=${this.currentUser._token}`, doc)
-      .subscribe(() => this.getAll());
+    if (this.currentUser != null) {
+      this.http
+        .patch(
+          `${this.URL}/${doc.id}.json?auth=${this.currentUser._token}`,
+          doc
+        )
+        .subscribe(() => this.getAll());
+    } else {
+      this.authService.currentUser
+        .pipe(
+          take(1),
+          exhaustMap((user) => {
+            return this.http.patch<T>(
+              `${this.URL}/${doc.id}.json?auth=${user.token}`,
+              doc
+            );
+          })
+        )
+        .subscribe(() => this.getAll());
+    }
   }
 
   delete(doc: T): void {
-    this.http
-      .delete(`${this.URL}/${doc.id}.json?auth=${this.currentUser._token}`)
-      .subscribe(() => this.getAll());
+    if (this.currentUser != null) {
+      this.http
+        .delete(`${this.URL}/${doc.id}.json?auth=${this.currentUser._token}`)
+        .subscribe(() => this.getAll());
+    } else {
+      this.authService.currentUser
+        .pipe(
+          take(1),
+          exhaustMap((user) => {
+            return this.http.delete<T>(
+              `${this.URL}/${doc.id}.json?auth=${user.token}`
+            );
+          })
+        )
+        .subscribe(() => this.getAll());
+    }
   }
 }

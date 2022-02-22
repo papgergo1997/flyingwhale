@@ -5,8 +5,8 @@ export interface Item {
   category: string;
   date: string;
   tech: string;
-  image: string;
-  previewImage: string;
+  images: string;
+  mainImage: string;
   imageId: string;
   imageName: string;
 }

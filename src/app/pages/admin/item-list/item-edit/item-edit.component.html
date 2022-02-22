@@ -13,7 +13,7 @@
     fxLayout="row wrap"
     [formGroup]="form"
   >
-    <div class="form-section" fxFlex="100" fxFlex.gt-sm="45"  fxLayout="column">
+    <div class="form-section" fxFlex="100" fxFlex.gt-sm="45" fxLayout="column">
       <mat-form-field *ngIf="this.form.get('id').value != '0'">
         <input matInput placeholder="Id" formControlName="id" />
       </mat-form-field>
@@ -30,7 +30,7 @@
         </div> -->
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Date" formControlName="date">
+        <input matInput placeholder="Date" formControlName="date" />
       </mat-form-field>
       <mat-form-field>
         <input
@@ -41,7 +41,11 @@
       </mat-form-field>
       <div fxFlex>
         <mat-form-field>
-          <mat-select matInput placeholder="Category" formControlName="category">
+          <mat-select
+            matInput
+            placeholder="Category"
+            formControlName="category"
+          >
             <mat-option *ngFor="let opt of categoryOpt" [value]="opt.name">{{
               opt.name
             }}</mat-option>
@@ -63,7 +67,7 @@
         <button class="add-btn" (click)="createNewCat()">
           <mat-icon class="check-icon">check</mat-icon>
         </button>
-        <button class="close-btn" (click)="newCat=false">
+        <button class="close-btn" (click)="newCat = false">
           <mat-icon class="close-icon">close</mat-icon>
         </button>
       </div>
@@ -91,30 +95,33 @@
         <button class="add-btn" (click)="createNewTech()">
           <mat-icon class="check-icon">check</mat-icon>
         </button>
-        <button class="close-btn" (click)="newTech=false">
+        <button class="close-btn" (click)="newTech = false">
           <mat-icon class="close-icon">close</mat-icon>
         </button>
       </div>
     </div>
     <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column">
-      <label>Image</label>
-      <img
+      <label>Main Image</label>
+      <!-- <img
         *ngIf="progress == 100 && form.get('image').value != ''"
         src="{{ form.get('image').value }}"
         alt="{{ form.get('image').value }}"
         class="image"
-      />
-      <label>Preview Image</label>
-      <img
+      /> -->
+
+
+      <label>Other Images</label>
+      <!-- <img
         *ngIf="progress == 100 && form.get('previewImage').value != ''"
         src="{{ form.get('previewImage').value }}"
         alt="{{ form.get('previewImage').value }}"
         style="width: 100px"
-      />
+      /> -->
 
       <div><input type="file" (change)="fileChangeEvent($event)" /></div>
 
-      <ngx-photo-editor
+
+      <!-- <ngx-photo-editor
         class="editor"
         [imageChangedEvent]="imageChangedEvent"
         (imageCropped)="imageCropped($event)"
@@ -122,9 +129,9 @@
         [viewMode]="3"
         [resizeToWidth]="500"
       >
-      </ngx-photo-editor>
+      </ngx-photo-editor> -->
       <img [src]="base64" alt="" />
-      <div
+      <!-- <div
         *ngIf="currentPhoto && form.get('image').value != null"
         style="width: 100%; margin: 3px 0"
       >
@@ -138,7 +145,7 @@
         >
           {{ progress }}%
         </div>
-      </div>
+      </div> -->
 
       <button class="upload-button" mat-button (click)="onUpload()">
         Upload

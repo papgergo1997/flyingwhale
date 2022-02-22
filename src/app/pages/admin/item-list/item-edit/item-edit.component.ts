@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { Photo } from 'src/app/model/photo';
 import { ItemService } from 'src/app/service/item.service';
 import { PhotoUploadService } from 'src/app/service/photo-upload.service';
@@ -23,17 +23,20 @@ export class ItemEditComponent implements OnInit {
   imageChangedEvent: any;
   base64: any;
   //
+  list$: Photo[];
   categoryOpt: Category[] = [];
-  techOpt: Tech[] =[];
+  techOpt: Tech[] = [];
   selectedFiles: any;
   currentPhoto: Photo;
   selectedPreviewFiles: any;
   currentPreviewPhoto: Photo;
+  imageURLs: string[] = [];
   imageNames: string[] = [];
   imageIds: string[] = [];
   progress: number = 100;
   newCat: boolean = false;
   newTech: boolean = false;
+  subscription: Subscription = new Subscription();
 
   form = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
@@ -41,13 +44,13 @@ export class ItemEditComponent implements OnInit {
     description: new FormControl(''),
     category: new FormControl(''),
     tech: new FormControl(''),
-    image: new FormControl(''),
-    previewImage: new FormControl(''),
+    images: new FormControl(''),
+    mainImage: new FormControl(''),
     date: new FormControl(''),
     imageId: new FormControl(''),
     imageName: new FormControl(''),
     newCategory: new FormControl(''),
-    newTech: new FormControl('')
+    newTech: new FormControl(''),
   });
 
   constructor(
@@ -64,20 +67,22 @@ export class ItemEditComponent implements OnInit {
   ngOnInit(): void {
     this.form.get('newCategory').reset();
     this.form.get('newTech').reset();
-    this.phUService.getImages();
     this.catService.getAll();
     this.techService.getAll();
     this.catService.list$.subscribe((list) => (this.categoryOpt = list));
-    this.techService.list$.subscribe((list)=> this.techOpt = list)
+    this.techService.list$.subscribe((list) => (this.techOpt = list));
+    this.phUService.list$.subscribe((list) => (this.list$ = list));
   }
 
   onSubmit(): void {
     if (this.form.get('id')?.value == '0') {
-      // PROVIDE THE KEY AND NAME HERE!!!!
       this.form.patchValue({
         imageId: this.imageIds,
         imageName: this.imageNames,
+        images: this.imageURLs,
+        mainImage: this.imageURLs[0],
       });
+      console.log(this.imageIds, this.imageNames, this.imageURLs);
       this.iService.create(this.form.value);
       this.dialogRef.close();
       this.progress = 0;
@@ -92,61 +97,97 @@ export class ItemEditComponent implements OnInit {
     this.selectedFiles = undefined;
     this.currentPhoto = new Photo(file[0]);
 
-    const previewFile = this.selectedPreviewFiles;
-    this.selectedPreviewFiles = undefined;
-    this.currentPreviewPhoto = new Photo(previewFile);
+    // const previewFile = this.selectedPreviewFiles;
+    // this.selectedPreviewFiles = undefined;
+    // this.currentPreviewPhoto = new Photo(previewFile);
     this.phUService.progress.subscribe((value) => (this.progress = value));
-    this.upload(this.currentPhoto, false);
-    this.upload(this.currentPreviewPhoto, true);
-  }
+    this.phUService.pushFileToStorage(this.currentPhoto);
 
-  upload(photo: Photo, preview: boolean): void {
-    if (preview == false) {
-      of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-        this.phUService.list$.subscribe((list) => {
-          this.form.patchValue({
-            image: list
-              .slice(list.length - 1, list.length)
-              .map((image) => {
-                //GET THE KEY AND NAME FROM HERE!!!!
-                this.imageIds.push(image.key);
-                this.imageNames.push(image.name);
-                return image.url;
-              })
-              .toString(),
-          });
-        })
-      );
-    } else if (preview == true) {
-      of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
-        this.phUService.list$.subscribe((list) => {
-          this.form.patchValue({
-            previewImage: list
-              .slice(list.length - 2, list.length)
-              .map((image) => image.url)
-              .toString(),
-          });
-        })
-      );
-    }
+    this.subscription = this.phUService.image$.subscribe((image) => {
+      console.log(image);
+      if (image != null) {
+        this.imageIds.push(image.key);
+        this.imageNames.push(image.name);
+        this.imageURLs.push(image.url);
+        this.phUService.image$.next(null);
+        this.subscription.unsubscribe();
+      }
+    });
+    // this.phUService.list$.subscribe((list) => {
+    //   console.log(list);
+    //   list.slice(list.length - 1, list.length).map((image) => {
+    //
+    //   });
+    // });
   }
+  // onUploadMain() {
+  //   const file = this.selectedFiles;
+  //   this.selectedFiles = undefined;
+  //   this.currentPhoto = new Photo(file[0]);
+
+  //   this.phUService.progress.subscribe((value) => (this.progress = value));
+  //   of(this.phUService.pushFileToStorage(this.currentPhoto)).subscribe(() =>
+  //     this.phUService.list$.subscribe((list) => {
+  //       this.form.patchValue({
+  //         mainImage: list
+  //           .slice(list.length - 1, list.length)
+  //           .map((image) => {
+  //             console.log(image.url);
+  //             return image.url;
+  //           })
+  //           .toString(),
+  //       });
+  //     })
+  //   );
+  // }
+
+  // upload(photo: Photo, preview: boolean): void {
+  //   if (preview == false) {
+  //     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+  //       this.phUService.list$.subscribe((list) => {
+  //         this.form.patchValue({
+  //           image: list
+  //             .slice(list.length - 1, list.length)
+  //             .map((image) => {
+  //               //GET THE KEY AND NAME FROM HERE!!!!
+  //               this.imageIds.push(image.key);
+  //               this.imageNames.push(image.name);
+  //               return image.url;
+  //             })
+  //             .toString(),
+  //         });
+  //       })
+  //     );
+  //   } else if (preview == true) {
+  //     of(this.phUService.pushFileToStorage(photo)).subscribe(() =>
+  //       this.phUService.list$.subscribe((list) => {
+  //         this.form.patchValue({
+  //           previewImage: list
+  //             .slice(list.length - 2, list.length)
+  //             .map((image) => image.url)
+  //             .toString(),
+  //         });
+  //       })
+  //     );
+  //   }
+  // }
 
   fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
+    // this.imageChangedEvent = event;
     this.selectedFiles = event.target.files;
   }
 
-  imageCropped(event: CroppedEvent): void {
-    this.selectedPreviewFiles = event.file;
-  }
+  // imageCropped(event: CroppedEvent): void {
+  //   this.selectedPreviewFiles = event.file;
+  // }
 
   createNewCat(): void {
     if (this.form.get('newCategory').value != null) {
       this.catService.create({
         id: Math.random()
-        .toString(36)
-        .replace(/[^a-zA-Z0-9]+/g, '')
-        .substr(2, 10),
+          .toString(36)
+          .replace(/[^a-zA-Z0-9]+/g, '')
+          .substr(2, 10),
         name: this.form.get('newCategory').value,
         description: '',
       });
@@ -158,16 +199,19 @@ export class ItemEditComponent implements OnInit {
     }
   }
   createNewTech(): void {
-    if(this.form.get('newTech').value != null){
-      this.techService.create({id: Math.random()
-        .toString(36)
-        .replace(/[^a-zA-Z0-9]+/g, '')
-        .substr(2, 10), name: this.form.get('newTech').value });
-        this.techService.getAll();
-        this.form.get('newTech').reset();
-        this.newTech = false;
+    if (this.form.get('newTech').value != null) {
+      this.techService.create({
+        id: Math.random()
+          .toString(36)
+          .replace(/[^a-zA-Z0-9]+/g, '')
+          .substr(2, 10),
+        name: this.form.get('newTech').value,
+      });
+      this.techService.getAll();
+      this.form.get('newTech').reset();
+      this.newTech = false;
     } else {
-      return
+      return;
     }
   }
   // reverseString(string: string): void {
