@@ -109,7 +109,7 @@
         class="image"
       />
       <div><input type="file" (change)="fileChangeEvent($event)" /></div>
-      <button class="upload-button" mat-button (click)="onUpload()">
+      <button class="upload-button" mat-button (click)="onUpload(true)">
         Upload
       </button>
       <label>Other Images</label>
@@ -152,7 +152,7 @@
         </div>
       </div>
 
-      <button class="upload-button" mat-button (click)="onUpload()">
+      <button class="upload-button" mat-button (click)="onUpload(false)">
         Upload
       </button>
     </div>

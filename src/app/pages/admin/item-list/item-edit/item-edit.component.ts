@@ -62,6 +62,7 @@ export class ItemEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.form.patchValue(data);
+    // this.imageURLs = data.images
   }
 
   ngOnInit(): void {
@@ -81,19 +82,22 @@ export class ItemEditComponent implements OnInit {
         imageId: this.imageIds,
         imageName: this.imageNames,
         images: this.imageURLs,
-        mainImage: this.imageURLs[0],
+        // mainImage: this.imageURLs[0],
       });
       console.log(this.imageIds, this.imageNames, this.imageURLs);
       this.iService.create(this.form.value);
       this.dialogRef.close();
       this.progress = 0;
     } else {
+      // this.form.patchValue({
+      //   images: this.imageURLs
+      // })
       this.iService.update(this.form.getRawValue());
       this.dialogRef.close();
     }
   }
 
-  onUpload(): void {
+  onUpload(main: boolean): void {
     const file = this.selectedFiles;
     this.selectedFiles = undefined;
     this.currentPhoto = new Photo(file[0]);
@@ -103,7 +107,18 @@ export class ItemEditComponent implements OnInit {
     // this.currentPreviewPhoto = new Photo(previewFile);
     this.phUService.progress.subscribe((value) => (this.progress = value));
     this.phUService.pushFileToStorage(this.currentPhoto);
-
+    if(main == true){
+      this.subscription = this.phUService.image$.subscribe((image) => {
+        console.log(image);
+        if (image != null) {
+          this.form.patchValue({mainImage: image.url})
+          this.imageIds.push(image.key);
+          this.imageNames.push(image.name);
+          this.phUService.image$.next(null);
+          this.subscription.unsubscribe();
+        }
+      })
+    } else{
     this.subscription = this.phUService.image$.subscribe((image) => {
       console.log(image);
       if (image != null) {
@@ -113,7 +128,7 @@ export class ItemEditComponent implements OnInit {
         this.phUService.image$.next(null);
         this.subscription.unsubscribe();
       }
-    });
+    })};
     // this.phUService.list$.subscribe((list) => {
     //   console.log(list);
     //   list.slice(list.length - 1, list.length).map((image) => {
