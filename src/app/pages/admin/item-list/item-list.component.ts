@@ -34,7 +34,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
   constructor(
     private iService: ItemService,
     private dialog: MatDialog,
-    private phUService: PhotoUploadService
+    private phUService: PhotoUploadService,
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +50,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+
 
     dialogConfig.data = doc;
     this.dialog.open(ItemEditComponent, dialogConfig);

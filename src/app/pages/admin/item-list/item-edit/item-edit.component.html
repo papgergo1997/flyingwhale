@@ -100,33 +100,38 @@
         </button>
       </div>
     </div>
-    <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column">
-      <label>Main Image</label>
-      <img
-        *ngIf="progress == 100 && form.get('mainImage').value != ''"
-        src="{{ form.get('mainImage').value }}"
-        alt="{{ form.get('mainImage').value }}"
-        class="image"
-      />
-      <div><input type="file" (change)="fileChangeEvent($event)" /></div>
-      <button class="upload-button" mat-button (click)="onUpload(true)">
-        Upload
-      </button>
-      <label>Other Images</label>
-      <div *ngIf="progress == 100 && form.get('images').value != ''">
-        <div *ngFor="let img of form.get('images').value">
-
-          <img
-            src="{{ form.get('images').value[img] }}"
-            alt="{{ form.get('images').value[img] }}"
-            style="width: 20px"
-          />
-        </div>
+    <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="row" fxLayout.gt-sm="column">
+      <div fxLayout="column">
+        <label>Main Image</label>
+        <img
+          *ngIf="progress == 100 && form.get('mainImage').value != ''"
+          src="{{ form.get('mainImage').value }}"
+          alt="{{ form.get('mainImage').value }}"
+          class="image"
+        />
+        <div ><input class="file" type="file" (change)="fileChangeEvent($event)" /></div>
+        <button class="upload-button" mat-button (click)="onUpload(true)">
+          Upload
+        </button>
       </div>
+      <div fxLayout="column" >
+        <label>Other Images</label>
+        <div
+          fxLayout="row wrap"
+          *ngIf="progress == 100 && form.get('images').value != ''"
+        >
+          <div fxLayout="column" *ngFor="let img of form.get('images').value">
+            <img
+              class="images"
+              src="{{ img }}"
+              alt="{{ form.get('name').value }}"
+            />
+          </div>
+        </div>
 
-      <div><input type="file" (change)="fileChangeEvent($event)" /></div>
+        <div ><input class="file" type="file" (change)="fileChangeEvent($event)" /></div>
 
-      <!-- <ngx-photo-editor
+        <!-- <ngx-photo-editor
         class="editor"
         [imageChangedEvent]="imageChangedEvent"
         (imageCropped)="imageCropped($event)"
@@ -135,26 +140,27 @@
         [resizeToWidth]="500"
       >
       </ngx-photo-editor> -->
-      <img [src]="base64" alt="" />
-      <div
-        *ngIf="currentPhoto && form.get('mainImage').value != null"
-        style="width: 100%; margin: 3px 0"
-      >
+        <img [src]="base64" alt="" />
         <div
-          class="progress-bar progress-bar-info"
-          role="progressbar"
-          attr.aria-valuenow="{{ progress }}"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          [ngStyle]="{ width: progress + '%' }"
+          *ngIf="currentPhoto && form.get('mainImage').value != null"
+          style="width: 100%; margin: 3px 0"
         >
-          {{ progress }}%
+          <div
+            class="progress-bar progress-bar-info"
+            role="progressbar"
+            attr.aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }"
+          >
+            {{ progress }}%
+          </div>
         </div>
-      </div>
 
-      <button class="upload-button" mat-button (click)="onUpload(false)">
-        Upload
-      </button>
+        <button class="upload-button" mat-button (click)="onUpload(false)">
+          Upload
+        </button>
+      </div>
     </div>
     <div fxLayout="row" class="btn-group">
       <button

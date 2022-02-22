@@ -62,7 +62,9 @@ export class ItemEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.form.patchValue(data);
-    // this.imageURLs = data.images
+    if (data.id != '0') {
+      this.imageURLs = data.images;
+    }
   }
 
   ngOnInit(): void {
@@ -73,7 +75,7 @@ export class ItemEditComponent implements OnInit {
     this.catService.list$.subscribe((list) => (this.categoryOpt = list));
     this.techService.list$.subscribe((list) => (this.techOpt = list));
     this.phUService.list$.subscribe((list) => (this.list$ = list));
-    console.log(this.form.get('images').value[1])
+    console.log(this.form.get('images').value[1]);
   }
 
   onSubmit(): void {
@@ -82,16 +84,15 @@ export class ItemEditComponent implements OnInit {
         imageId: this.imageIds,
         imageName: this.imageNames,
         images: this.imageURLs,
-        // mainImage: this.imageURLs[0],
       });
       console.log(this.imageIds, this.imageNames, this.imageURLs);
       this.iService.create(this.form.value);
       this.dialogRef.close();
       this.progress = 0;
     } else {
-      // this.form.patchValue({
-      //   images: this.imageURLs
-      // })
+      this.form.patchValue({
+        images: this.imageURLs,
+      });
       this.iService.update(this.form.getRawValue());
       this.dialogRef.close();
     }
@@ -102,39 +103,31 @@ export class ItemEditComponent implements OnInit {
     this.selectedFiles = undefined;
     this.currentPhoto = new Photo(file[0]);
 
-    // const previewFile = this.selectedPreviewFiles;
-    // this.selectedPreviewFiles = undefined;
-    // this.currentPreviewPhoto = new Photo(previewFile);
     this.phUService.progress.subscribe((value) => (this.progress = value));
     this.phUService.pushFileToStorage(this.currentPhoto);
-    if(main == true){
+    if (main == true) {
       this.subscription = this.phUService.image$.subscribe((image) => {
         console.log(image);
         if (image != null) {
-          this.form.patchValue({mainImage: image.url})
+          this.form.patchValue({ mainImage: image.url });
           this.imageIds.push(image.key);
           this.imageNames.push(image.name);
           this.phUService.image$.next(null);
           this.subscription.unsubscribe();
         }
-      })
-    } else{
-    this.subscription = this.phUService.image$.subscribe((image) => {
-      console.log(image);
-      if (image != null) {
-        this.imageIds.push(image.key);
-        this.imageNames.push(image.name);
-        this.imageURLs.push(image.url);
-        this.phUService.image$.next(null);
-        this.subscription.unsubscribe();
-      }
-    })};
-    // this.phUService.list$.subscribe((list) => {
-    //   console.log(list);
-    //   list.slice(list.length - 1, list.length).map((image) => {
-    //
-    //   });
-    // });
+      });
+    } else {
+      this.subscription = this.phUService.image$.subscribe((image) => {
+        console.log(image);
+        if (image != null) {
+          this.imageIds.push(image.key);
+          this.imageNames.push(image.name);
+          this.imageURLs.push(image.url);
+          this.phUService.image$.next(null);
+          this.subscription.unsubscribe();
+        }
+      });
+    }
   }
   // onUploadMain() {
   //   const file = this.selectedFiles;
