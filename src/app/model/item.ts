@@ -7,6 +7,6 @@ export interface Item {
   tech: string;
   images: string;
   mainImage: string;
-  imageId: string;
-  imageName: string;
+  imageId: any;
+  imageName: any;
 }

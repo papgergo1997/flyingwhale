@@ -50,8 +50,6 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
-
     dialogConfig.data = doc;
     this.dialog.open(ItemEditComponent, dialogConfig);
   }
@@ -63,12 +61,16 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
   onDelete(doc: Item): void {
     this.iService.delete(doc);
-    this.phUService.deleteImages(
-      doc.imageName[doc.imageName.length - 1],
-      doc.imageId[doc.imageId.length - 1],
-      doc.imageName[doc.imageName.length - 2],
-      doc.imageId[doc.imageId.length - 2]
-    );
+    doc.imageName.map((name)=>{
+      this.phUService.deleteImageFrStAndDB(name, '')
+    })
+
+    // this.phUService.deleteImages(
+    //   doc.imageName[doc.imageName.length - 1],
+    //   doc.imageId[doc.imageId.length - 1],
+    //   doc.imageName[doc.imageName.length - 2],
+    //   doc.imageId[doc.imageId.length - 2]
+    // );
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
