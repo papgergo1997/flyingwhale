@@ -102,24 +102,29 @@
     </div>
     <div fxFlex="100" fxFlex.gt-sm="50" fxLayout="column">
       <label>Main Image</label>
-      <!-- <img
-        *ngIf="progress == 100 && form.get('image').value != ''"
-        src="{{ form.get('image').value }}"
-        alt="{{ form.get('image').value }}"
+      <img
+        *ngIf="progress == 100 && form.get('mainImage').value != ''"
+        src="{{ form.get('mainImage').value }}"
+        alt="{{ form.get('mainImage').value }}"
         class="image"
-      /> -->
-
-
+      />
+      <div><input type="file" (change)="fileChangeEvent($event)" /></div>
+      <button class="upload-button" mat-button (click)="onUpload()">
+        Upload
+      </button>
       <label>Other Images</label>
-      <!-- <img
-        *ngIf="progress == 100 && form.get('previewImage').value != ''"
-        src="{{ form.get('previewImage').value }}"
-        alt="{{ form.get('previewImage').value }}"
-        style="width: 100px"
-      /> -->
+      <div *ngIf="progress == 100 && form.get('images').value != ''">
+        <div *ngFor="let img of form.get('images').value">
+
+          <img
+            src="{{ form.get('images').value[img] }}"
+            alt="{{ form.get('images').value[img] }}"
+            style="width: 20px"
+          />
+        </div>
+      </div>
 
       <div><input type="file" (change)="fileChangeEvent($event)" /></div>
-
 
       <!-- <ngx-photo-editor
         class="editor"
@@ -131,8 +136,8 @@
       >
       </ngx-photo-editor> -->
       <img [src]="base64" alt="" />
-      <!-- <div
-        *ngIf="currentPhoto && form.get('image').value != null"
+      <div
+        *ngIf="currentPhoto && form.get('mainImage').value != null"
         style="width: 100%; margin: 3px 0"
       >
         <div
@@ -145,7 +150,7 @@
         >
           {{ progress }}%
         </div>
-      </div> -->
+      </div>
 
       <button class="upload-button" mat-button (click)="onUpload()">
         Upload

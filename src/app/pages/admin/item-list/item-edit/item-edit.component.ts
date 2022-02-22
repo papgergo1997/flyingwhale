@@ -72,6 +72,7 @@ export class ItemEditComponent implements OnInit {
     this.catService.list$.subscribe((list) => (this.categoryOpt = list));
     this.techService.list$.subscribe((list) => (this.techOpt = list));
     this.phUService.list$.subscribe((list) => (this.list$ = list));
+    console.log(this.form.get('images').value[1])
   }
 
   onSubmit(): void {
