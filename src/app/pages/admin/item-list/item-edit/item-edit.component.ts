@@ -62,8 +62,9 @@ export class ItemEditComponent implements OnInit {
     private techService: TechService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
+    console.log(data.images)
     this.form.patchValue(data);
-    if (data.id != '0') {
+    if (data.id != '0' && data.images != '' && data.images != undefined) {
       this.imageURLs = data.images;
     }
   }

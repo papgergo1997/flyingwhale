@@ -34,11 +34,12 @@ import { CategoryFilterPipe } from './pipes/category-filter.pipe';
 import { GreetPrintComponent } from './pages/main/greet-print/greet-print.component';
 import { BagsComponent } from './pages/main/bags/bags.component';
 import { MainFooterComponent } from './pages/main/main-footer/main-footer.component';
+import { CalendarsComponent } from './pages/main/calendars/calendars.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent],
+  declarations: [AppComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -11,18 +11,18 @@
   width: 100%;
 }
 .page-main {
-  .back-btn{
+  .back-btn {
     margin: 20px;
   }
   .main-img--container {
     .main-img {
+      max-width: 400px;
       margin: 20px;
       box-shadow: 0 0 20px rgb(48, 48, 48);
     }
     .description {
       margin: 20px;
       .social-nav {
-
         .nav-social {
           padding: 0;
           .social-nav--item {
@@ -44,7 +44,7 @@
                 rgb(116, 2, 131),
                 rgb(255, 0, 0)
               );
-              i{
+              i {
                 margin-left: -1.6px;
               }
             }
@@ -57,9 +57,10 @@
     }
   }
   .bonus-img--container {
-    .bonus-img {
+    .bonus-image {
       margin: 20px;
-      height: 400px;
+      max-height: 300px;
+      max-width: 400px;
     }
   }
 }
