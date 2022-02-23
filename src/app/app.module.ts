@@ -19,7 +19,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { LoginComponent } from './pages/login/login.component';
 import { AboutComponent } from './pages/main/about/about.component';

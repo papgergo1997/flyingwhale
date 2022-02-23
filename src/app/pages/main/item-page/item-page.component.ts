@@ -14,6 +14,7 @@ export class ItemPageComponent implements OnInit {
 
   item$: Observable<Item> = new Observable<Item>();
 
+
   constructor(private activatedRoute: ActivatedRoute, private iService: ItemService) { }
 
   ngOnInit(): void {
@@ -23,5 +24,7 @@ export class ItemPageComponent implements OnInit {
         return this.iService.get(params.id)})
     )
   }
+
+
 
 }
