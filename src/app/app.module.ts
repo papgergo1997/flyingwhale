@@ -30,10 +30,11 @@ import { ItemCardContainerComponent } from './pages/main/item-card-container/ite
 import { MainHeaderComponent } from './pages/main/main-header/main-header.component';
 import { MainSideNavComponent } from './pages/main/main-side-nav/main-side-nav.component';
 import { ItemPageComponent } from './pages/main/home/item-page/item-page.component';
+import { CategoryFilterPipe } from './pipes/category-filter.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent,  HomeComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent],
+  declarations: [AppComponent,  HomeComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -51,6 +51,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = doc;
+    dialogConfig.maxWidth = '100%';
     this.dialog.open(ItemEditComponent, dialogConfig);
   }
 
