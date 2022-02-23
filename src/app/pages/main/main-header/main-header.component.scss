@@ -4,9 +4,12 @@
   height: 270px;
   background-color: $primary-blue;
   // background-attachment: fixed;
+  .logo{
+    margin-top: 100px ;
+  }
   .logo-img{
-    width: 230px;
-    height: 180px;
+   width: 250px;
+  margin-bottom: 30px;
   }
   .top-nav {
     z-index: 0;
@@ -46,6 +49,10 @@
 @media screen and (min-width: 600px) {
   .header {
     background-size: 800px;
+    .logo-img{
+      width: 200px;
+     margin-bottom: 15px;
+     }
     .top-nav {
       .nav-top {
         display: flex !important;

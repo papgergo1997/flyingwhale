@@ -19,6 +19,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './admin-header/header.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressBarModule} from '@angular/material/progress-bar'
 @NgModule({
   declarations: [
     AdminComponent,
@@ -42,7 +43,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSelectModule,
     MatMenuModule,
     FlexLayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressBarModule
   ],
   exports: [NgxPhotoEditorModule],
   providers: [],

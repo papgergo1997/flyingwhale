@@ -52,9 +52,10 @@
         mat-button
         type="submit"
       >
-        <label class="login-label">Bejelentkezés</label>
+        Bejelentkezés
       </button>
-      <h2 class="error">{{ errorMessage }}</h2>
     </div>
   </form>
+  <h2 class="error">{{ errorMessage }}</h2>
+  <mat-spinner [diameter]="50" *ngIf="isLoading"></mat-spinner>
 </div>

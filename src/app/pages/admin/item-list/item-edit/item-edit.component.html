@@ -152,7 +152,7 @@
           *ngIf="currentPhoto && form.get('mainImage').value != null"
           style="width: 100%; margin: 3px 0"
         >
-          <div
+          <!-- <div
             class="progress-bar progress-bar-info"
             role="progressbar"
             attr.aria-valuenow="{{ progress }}"
@@ -161,7 +161,8 @@
             [ngStyle]="{ width: progress + '%' }"
           >
             {{ progress }}%
-          </div>
+          </div> -->
+          <mat-progress-bar mode="determinate" value="{{progress}}"></mat-progress-bar>
         </div>
 
         <button class="upload-button" mat-button (click)="onUpload(false)">
