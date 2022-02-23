@@ -33,7 +33,7 @@ export class ItemEditComponent implements OnInit {
   imageURLs: string[] = [];
   imageNames: string[] = [];
   imageIds: string[] = [];
-  progress: number = 100;
+  progress: number ;
   newCat: boolean = false;
   newTech: boolean = false;
   subscription: Subscription = new Subscription();
