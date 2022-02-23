@@ -13,10 +13,12 @@
     ></app-main-header>
     <main fxFlex="100" fxFlex.gt-md="90" class="page-main" fxLayout="row wrap">
       <app-item-card-container
+        [filterKey]="'greet-print'"
         fxLayoutAlign="center"
         fxFlex="100"
         fxLayout="row wrap"
       ></app-item-card-container>
     </main>
+    <app-main-footer fxFlex="100"></app-main-footer>
   </div>
 </mat-drawer-container>

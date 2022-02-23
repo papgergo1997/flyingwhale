@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
           // localStorage.setItem('user', JSON.stringify(this.currentUser));
           // JSON.parse(localStorage.getItem('user')||'null');
-          this.router.navigate(['/home'])
+          this.router.navigate(['/about'])
         },
         (errorMessage) => {
           console.log(errorMessage);

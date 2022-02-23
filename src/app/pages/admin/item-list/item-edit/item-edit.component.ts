@@ -51,6 +51,7 @@ export class ItemEditComponent implements OnInit {
     imageName: new FormControl(''),
     newCategory: new FormControl(''),
     newTech: new FormControl(''),
+    instaLink: new FormControl('')
   });
 
   constructor(

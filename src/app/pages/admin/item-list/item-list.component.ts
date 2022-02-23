@@ -25,6 +25,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
     mainImage: '',
     imageId: '',
     imageName: '',
+    instaLink: ''
   };
   subscription: Subscription = new Subscription();
   @ViewChild('paginator') paginator: MatPaginator;

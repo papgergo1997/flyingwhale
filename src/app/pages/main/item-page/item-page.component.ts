@@ -18,7 +18,9 @@ export class ItemPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.item$ = this.activatedRoute.params.pipe(
-      switchMap(params=> this.iService.get(params.id))
+      switchMap(params=> {
+        console.log(params)
+        return this.iService.get(params.id)})
     )
   }
 

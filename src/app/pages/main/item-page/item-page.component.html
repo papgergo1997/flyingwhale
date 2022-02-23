@@ -1,0 +1,91 @@
+<mat-drawer-container class="page-container" autosize>
+  <mat-drawer #drawer class="drawer" mode="over">
+    <p>FlyingWhale</p>
+    <app-main-side-nav></app-main-side-nav>
+  </mat-drawer>
+  <div class="page-content" fxLayoutAlign="center" fxLayout="row wrap">
+    <app-main-header
+      fxFlex="100"
+      class="header"
+      fxLayout="row"
+      fxLayoutAlign="center end"
+      [drawer]="drawer"
+    ></app-main-header>
+    <main
+      *ngIf="item$ | async as item"
+      fxFlex="100"
+      fxFlex.gt-md="90"
+      class="page-main"
+      fxLayout="row wrap"
+      fxLayoutAlign="center"
+    >
+      <nav fxFlex="100">
+        <button class="back-btn" mat-button routerLink="/greet-print">
+          <mat-icon>arrow_left</mat-icon>Back
+        </button>
+      </nav>
+      <section
+        class="main-img--container"
+        fxFlex="100"
+        fxLayout="column"
+        fxLayout.gt-xs="row"
+      >
+        <img
+          class="main-img"
+          src="{{ item.mainImage }}"
+          alt="{{ item.name }}"
+        />
+        <div fxLayout="column" class="description">
+          <h1>{{ item.name }}</h1>
+          <p>{{ item.date }}</p>
+          <p>{{ item.description }}</p>
+          <nav class="social-nav">
+            <ul class="nav-social" fxLayout="row">
+              <li class="social-nav--item">
+                <a
+                  href="{{
+                    item.instaLink != null && item.instaLink != ''
+                      ? item.instaLink
+                      : 'https://www.instagram.com/heartandsowl03/'
+                  }}"
+                  target="_blank"
+                >
+                  <button class="insta-link">
+                    <i class="fa fa-instagram"></i></button
+                ></a>
+              </li>
+              <li class="social-nav--item">
+                <a href="https://www.facebook.com/paplidya" target="_blank">
+                  <button class="face-link">
+                    <i class="fa fa-facebook"></i></button
+                ></a>
+              </li>
+              <li class="social-nav--item"></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+      <div
+        class="bonus-img--container"
+        fxLayout="row wrap"
+        fxLayoutAlign="center"
+        fxFlex="100"
+        fxFlex.gt-xs="50"
+        fxFlex.gt-sm="33"
+        *ngFor="let image of item.images"
+      >
+        <img class="bonus-img" src="{{ image }}" />
+      </div>
+
+      <!-- <app-item-card-container
+        [filterKey]="'bags'"
+        fxLayoutAlign="center"
+        fxFlex="100"
+        fxLayout="row wrap"
+      ></app-item-card-container> -->
+
+    </main>
+<app-main-footer fxFlex="100"></app-main-footer>
+  </div>
+</mat-drawer-container>

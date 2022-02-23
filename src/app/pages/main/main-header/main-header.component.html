@@ -13,17 +13,6 @@
       <li class="item-top">
         <button
           mat-button
-          routerLink="/home"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="link-top"
-        >
-          Home
-        </button>
-      </li>
-      <li class="item-top">
-        <button
-          mat-button
           routerLink="/about"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -46,7 +35,7 @@
       <li class="item-top">
         <button
           mat-button
-          routerLink=""
+          routerLink="/greet-print"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="link-top"
@@ -84,7 +73,7 @@
         <mat-menu #more="matMenu">
           <button mat-menu-item routerLink="">Calendars</button>
           <button mat-menu-item routerLink="">T-shirts</button>
-          <button mat-menu-item routerLink="">Bags</button>
+          <button mat-menu-item routerLink="/bags">Bags</button>
           <button mat-menu-item routerLink="">Notebooks</button>
         </mat-menu>
       </li>

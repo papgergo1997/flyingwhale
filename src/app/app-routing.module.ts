@@ -1,29 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/main/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import {
   AuthGuardService,
   LoginGuardService,
 } from './service/auth-guard.service';
 import { AboutComponent } from './pages/main/about/about.component';
-import { ItemPageComponent } from './pages/main/home/item-page/item-page.component';
+import { ItemPageComponent } from './pages/main/item-page/item-page.component';
+import { GreetPrintComponent } from './pages/main/greet-print/greet-print.component';
+import { BagsComponent } from './pages/main/bags/bags.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'about', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [LoginGuardService],
   },
-  { path: 'home', component: HomeComponent },
-  {path: 'home/:id', component: ItemPageComponent},
+  { path: 'bags', component: BagsComponent },
+  { path: 'bags/:id', component: ItemPageComponent },
+  { path: 'greet-print', component: GreetPrintComponent },
+  { path: 'greet-print/:id', component: ItemPageComponent },
   { path: 'about', component: AboutComponent },
   {
     path: 'admin',
     canActivate: [AuthGuardService],
-    loadChildren: ()=>
-    import('./pages/admin/admin.module').then((m)=>m.AdminModule),
+    loadChildren: () =>
+      import('./pages/admin/admin.module').then((m) => m.AdminModule),
   },
 ];
 

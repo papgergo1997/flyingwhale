@@ -42,7 +42,7 @@ export class AuthService {
   logout(): void {
     this.currentUser.next(null)
     localStorage.removeItem('user')
-    this.router.navigate(['/home'])
+    this.router.navigate(['/about'])
     if (this.expirationTimer){
       clearTimeout(this.expirationTimer)
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/model/item';
 import { ItemService } from 'src/app/service/item.service';
@@ -9,6 +9,8 @@ import { ItemService } from 'src/app/service/item.service';
   styleUrls: ['./item-card-container.component.scss']
 })
 export class ItemCardContainerComponent implements OnInit {
+
+  @Input() filterKey: string;
 
   list$: Observable<Item[]> = new Observable<Item[]>()
 

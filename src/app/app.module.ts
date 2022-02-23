@@ -21,7 +21,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './pages/main/home/home.component';
+
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { LoginComponent } from './pages/login/login.component';
 import { AboutComponent } from './pages/main/about/about.component';
@@ -29,12 +29,16 @@ import { ItemCardComponent } from './pages/main/item-card/item-card.component';
 import { ItemCardContainerComponent } from './pages/main/item-card-container/item-card-container.component';
 import { MainHeaderComponent } from './pages/main/main-header/main-header.component';
 import { MainSideNavComponent } from './pages/main/main-side-nav/main-side-nav.component';
-import { ItemPageComponent } from './pages/main/home/item-page/item-page.component';
+import { ItemPageComponent } from './pages/main/item-page/item-page.component';
 import { CategoryFilterPipe } from './pipes/category-filter.pipe';
+import { GreetPrintComponent } from './pages/main/greet-print/greet-print.component';
+import { BagsComponent } from './pages/main/bags/bags.component';
+import { MainFooterComponent } from './pages/main/main-footer/main-footer.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent,  HomeComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe],
+  declarations: [AppComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

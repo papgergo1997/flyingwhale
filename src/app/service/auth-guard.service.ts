@@ -48,6 +48,6 @@ export class LoginGuardService implements CanActivate {
       if(!isUserLoggedIn) {
         return true
       }
-      return this.router.createUrlTree(['/home']);
+      return this.router.createUrlTree(['/about']);
     }
 }
