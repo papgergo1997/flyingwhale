@@ -27,12 +27,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.component';
+import { LogosComponent } from './logos/logos.component';
 
 
 
 
 @NgModule({
-  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent],
+  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

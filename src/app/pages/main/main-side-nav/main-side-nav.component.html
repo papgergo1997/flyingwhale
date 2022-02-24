@@ -1,27 +1,130 @@
-
 <nav class="side-nav" fxLayout="column" fxLayoutAlign="center center">
-  <img class="side-logo" src="../../../../assets/img/logo/flying_whale_logo.png"  alt="logo" >
+  <img
+    class="side-logo"
+    src="../../../../assets/img/logo/flying_whale_logo.png"
+    alt="logo"
+  />
   <ul fxLayout="column" fxLayoutAlign="center center" class="nav-side">
     <li class="item-side">
-      <button mat-button routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">About</button>
-    </li>
-    <li class="item-side">
-      <button mat-button routerLink="/greet-print" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Greeting cards\Prints</button>
-    </li>
-    <li class="item-side">
-      <button mat-button routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="link-side">Illustrations</button>
-    </li>
-    <li *ngIf="!isLoggedIn()" class="item-side--admin">
-      <button mat-button routerLink="/login" class="link-side">
-        Login
+      <button
+        mat-button
+        routerLink="about"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link-side"
+      >
+        About
       </button>
     </li>
+    <li class="item-side">
+      <button
+        mat-button
+        routerLink=""
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link-side"
+      >
+        Portraits
+      </button>
+    </li>
+    <li class="item-side">
+      <button
+        mat-button
+        routerLink="greet-print"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link-side"
+      >
+        Greeting cards\Prints
+      </button>
+    </li>
+    <li class="item-side">
+      <button
+        mat-button
+        routerLink=""
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link-side"
+      >
+        Illustrations
+      </button>
+    </li>
+    <li class="item-side">
+      <button
+        mat-button
+        routerLink="logos"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link-side"
+      >
+        Logos
+      </button>
+    </li>
+
+    <li class="item-side">
+      <button mat-button class="link-side" (click)="isMore = !isMore">
+        <b>More</b>
+      </button>
+    </li>
+    <ul *ngIf="isMore" fxLayout="column" fxLayoutAlign="center center" class="nav-side">
+      <li class="item-side">
+        <button
+          mat-button
+          routerLink="calendars"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="link-side"
+        >
+          Calendars
+        </button>
+      </li>
+      <li class="item-side">
+        <button
+          mat-button
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="link-side"
+        >
+          T-shirts
+        </button>
+      </li>
+      <li class="item-side">
+        <button
+          mat-button
+          routerLink="bags"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="link-side"
+        >
+          Bags
+        </button>
+      </li>
+      <li class="item-side">
+        <button
+          mat-button
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="link-side"
+        >
+          Notebooks
+        </button>
+      </li>
+    </ul>
+
+    <li *ngIf="!isLoggedIn()" class="item-side--admin">
+      <button mat-button routerLink="/login" class="link-side">Login</button>
+    </li>
+
     <li *ngIf="isLoggedIn()" class="item-side--admin">
-      <button mat-button [matMenuTriggerFor]="menu" class="link-top"><mat-icon>person</mat-icon></button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/admin/items">Admin</button>
-          <button mat-menu-item (click)="logout()">Log out</button>
-        </mat-menu>
+      <button mat-button [matMenuTriggerFor]="menu" class="link-top">
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/admin/items">Admin</button>
+        <button mat-menu-item (click)="logout()">Log out</button>
+      </mat-menu>
     </li>
   </ul>
 </nav>

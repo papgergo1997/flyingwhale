@@ -69,7 +69,7 @@
     fxFlex.gt-sm="33"
     *ngFor="let image of item.images"
   >
-    <img class="bonus-image" src="{{ image }}" alt="" srcset="" />
+    <img class="bonus-image" src="{{ image }}" alt="{{image}}"  loading="lazy"/>
   </div>
 
   <!-- <app-item-card-container

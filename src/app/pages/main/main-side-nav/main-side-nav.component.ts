@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class MainSideNavComponent implements OnInit {
 
+  isMore: boolean = false;
 
   constructor(private authService: AuthService) { }
 

@@ -7,6 +7,7 @@ import { BagsComponent } from './bags/bags.component';
 import { CalendarsComponent } from './calendars/calendars.component';
 import { MainComponent } from './main.component';
 import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.component';
+import { LogosComponent } from './logos/logos.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'bags/:id', component: ItemPageComponent },
       { path: 'greet-print', component: GreetPrintComponent },
       { path: 'greet-print/:id', component: ItemPageComponent },
+      {path: 'logos', component: LogosComponent},
       { path: 'about', component: AboutComponent },
     ],
   },
