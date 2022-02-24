@@ -1,24 +1,8 @@
-<mat-drawer-container class="page-container" autosize>
-  <mat-drawer #drawer class="drawer" mode="over">
-    <p>FlyingWhale</p>
-    <app-main-side-nav></app-main-side-nav>
-  </mat-drawer>
-  <div class="page-content" fxLayoutAlign="center" fxLayout="row wrap">
-    <app-main-header
-      fxFlex="100"
-      class="header"
-      fxLayout="row"
-      fxLayoutAlign="center end"
-      [drawer]="drawer"
-    ></app-main-header>
-    <main fxFlex="100" fxFlex.gt-md="90" class="page-main" fxLayout="row wrap">
+<main fxFlex="100" fxFlex.gt-md="90" fxFlexOffset.gt-md="5" >
       <app-item-card-container
         [filterKey]="'bags'"
         fxLayoutAlign="center"
         fxFlex="100"
         fxLayout="row wrap"
       ></app-item-card-container>
-    </main>
-    <app-main-footer fxFlex="100"></app-main-footer>
-  </div>
-</mat-drawer-container>
+</main>

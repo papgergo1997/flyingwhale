@@ -1,0 +1,81 @@
+<main
+  *ngIf="item$ | async as item"
+  fxFlex="100"
+  fxFlex.gt-md="90"
+  fxFlexOffset.gt-md="5"
+  class="page-main"
+  fxLayout="row wrap"
+  fxLayoutAlign="center"
+>
+  <nav fxFlex="100">
+    <button class="back-btn" mat-button routerLink="/main/calendars">
+      <mat-icon>arrow_left</mat-icon>Back
+    </button>
+  </nav>
+  <section
+    class="main-img--container"
+    fxFlex="100"
+    fxLayout="column"
+    fxLayout.gt-xs="row"
+  >
+    <img class="main-img" src="{{ item.mainImage }}" alt="{{ item.name }}" />
+    <div fxLayout="column" class="description">
+      <h1>{{ item.name }}</h1>
+      <p>{{ item.date }}</p>
+      <p>{{ item.description }}</p>
+      <nav class="social-nav">
+        <ul class="nav-social" fxLayout="row">
+          <li class="social-nav--item">
+            <a
+              href="{{
+                item.instaLink != null && item.instaLink != ''
+                  ? item.instaLink
+                  : 'https://www.instagram.com/heartandsowl03/'
+              }}"
+              target="_blank"
+            >
+              <button matTooltip="Instagram" class="insta-link">
+                <i class="fa fa-instagram"></i></button
+            ></a>
+          </li>
+          <li class="social-nav--item">
+            <a href="https://www.facebook.com/paplidya" target="_blank">
+              <button matTooltip="Facebook" class="face-link">
+                <i class="fa fa-facebook"></i></button
+            ></a>
+          </li>
+          <li class="social-nav--item"></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <!-- <ngb-carousel >
+        <ng-template  ngbSlide *ngFor="let image of item.images">
+          <div class="picsum-img-wrapper">
+            <img [src]="image" alt="Random first slide">
+          </div>
+          <div class="carousel-caption">
+
+          </div>
+        </ng-template>
+      </ngb-carousel> -->
+
+  <div
+    class="bonus-img--container"
+    fxLayout="row wrap"
+    fxLayoutAlign="center"
+    fxFlex="100"
+    fxFlex.gt-xs="50"
+    fxFlex.gt-sm="33"
+    *ngFor="let image of item.images"
+  >
+    <img class="bonus-image" src="{{ image }}" alt="" srcset="" />
+  </div>
+
+  <!-- <app-item-card-container
+        [filterKey]="'bags'"
+        fxLayoutAlign="center"
+        fxFlex="100"
+        fxLayout="row wrap"
+      ></app-item-card-container> -->
+</main>

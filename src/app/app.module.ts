@@ -21,25 +21,16 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { NgbModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSidenavModule} from '@angular/material/sidenav';
-import { LoginComponent } from './pages/login/login.component';
-import { AboutComponent } from './pages/main/about/about.component';
-import { ItemCardComponent } from './pages/main/item-card/item-card.component';
-import { ItemCardContainerComponent } from './pages/main/item-card-container/item-card-container.component';
-import { MainHeaderComponent } from './pages/main/main-header/main-header.component';
-import { MainSideNavComponent } from './pages/main/main-side-nav/main-side-nav.component';
-import { ItemPageComponent } from './pages/main/item-page/item-page.component';
-import { CategoryFilterPipe } from './pipes/category-filter.pipe';
-import { GreetPrintComponent } from './pages/main/greet-print/greet-print.component';
-import { BagsComponent } from './pages/main/bags/bags.component';
-import { MainFooterComponent } from './pages/main/main-footer/main-footer.component';
-import { CalendarsComponent } from './pages/main/calendars/calendars.component';
+
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoginComponent } from './pages/login/login.component';
+
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

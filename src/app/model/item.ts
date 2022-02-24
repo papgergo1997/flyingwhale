@@ -10,4 +10,5 @@ export interface Item {
   imageId: any;
   imageName: any;
   instaLink: string;
+  size?: string;
 }

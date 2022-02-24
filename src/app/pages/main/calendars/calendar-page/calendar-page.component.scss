@@ -1,17 +1,7 @@
 @import "/src/assets/scss/variables/fonts";
 @import "/src/assets/scss/variables/colors";
-.page-container {
-  width: 100vw;
-  height: 100vh;
-}
 
-.page-content {
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-.page-main {
-  .back-btn {
+  .back-btn{
     margin: 20px;
   }
   .main-img--container {
@@ -69,27 +59,5 @@
       max-width: 400px;
     }
   }
-}
 
-.drawer {
-  padding: 20px;
-  background-color: rgba($color: $primary-blue, $alpha: 0.8);
-  .side-nav {
-    .nav-side {
-      padding: 0;
-      [class^="item-side"] {
-        list-style: none;
-        .link-side {
-          text-decoration: none;
-          color: black;
-        }
-      }
-    }
-  }
-}
 
-@media screen and (min-width: 600px) {
-  .drawer {
-    display: none;
-  }
-}
