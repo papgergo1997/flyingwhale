@@ -4,10 +4,11 @@
   height: 40px;
   background-color: rgba($color: $primary-blue, $alpha: 0.8);
   // background-attachment: fixed;
-  .logo{
+  .logo {
     display: none;
   }
-  .logo-img{
+  .logo-img {
+    display: none;
     width: 200px;
     height: 180px;
   }
@@ -27,7 +28,7 @@
           color: black;
         }
       }
-      .item-top--admin{
+      .item-top--admin {
         position: absolute;
         top: 0;
         right: 0;
@@ -43,15 +44,18 @@
     }
   }
 }
-.active{
+.active {
   color: rgb(255, 255, 255) !important;
 }
 @media screen and (min-width: 600px) {
   .header {
     height: 270px;
     background-size: 800px;
-    .logo{
+    .logo {
       display: flex;
+    }
+    .logo-img {
+      display: block;
     }
     .top-nav {
       .nav-top {

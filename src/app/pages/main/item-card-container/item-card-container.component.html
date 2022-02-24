@@ -1,3 +1,14 @@
-<div class="c" fxLayoutAlign="center" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33" *ngFor="let item of list$ |async |categoryFilter: filterKey" fxLayout="row wrap">
-  <app-item-card  [item]="item" [routerLink]="['/main/'+ filterKey +'/'+ item.id]"></app-item-card>
+<div
+  class="c"
+  fxLayoutAlign="center"
+  fxFlex="100"
+  fxFlex.gt-xs="50"
+  fxFlex.gt-sm="33"
+  *ngFor="let item of list$ | async | categoryFilter: filterKey"
+  fxLayout="row wrap"
+>
+  <app-item-card
+    [item]="item"
+    [routerLink]="['/main/' + filterKey + '/' + item.id]"
+  ></app-item-card>
 </div>

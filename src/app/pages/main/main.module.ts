@@ -30,8 +30,6 @@ import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.c
 import { LogosComponent } from './logos/logos.component';
 
 
-
-
 @NgModule({
   declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent],
   imports: [
@@ -50,6 +48,7 @@ import { LogosComponent } from './logos/logos.component';
     MatTooltipModule,
     MatProgressSpinnerModule,
     NgbCarouselModule
+
   ],
   exports:[],
   providers: [],

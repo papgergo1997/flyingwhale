@@ -38,7 +38,7 @@
         </div>
         <div *ngIf="col == 'mainImage'">
           <td mat-cell class="table-cell" *matCellDef="let item">
-            <img src="{{ item[col] }}" alt="{{ item[col] }}" style="width: 100px;"/>
+            <img src="{{ item[col] }}" alt="{{ item[col] }}" style="width: 100px;" loading="lazy"/>
           </td>
         </div>
         <div *ngIf="col == 'edit'">
