@@ -1,4 +1,5 @@
 <div fxLayout="column" class="login-container">
+  <button mat-button class="back-btn" routerLink="/main/about"><mat-icon>arrow_left</mat-icon>Back Home</button>
   <p *ngIf="error">{{error}}</p>
   <form
     fxLayout="column"
@@ -6,7 +7,8 @@
     [formGroup]="loginForm"
     (ngSubmit)="login()"
   >
-    <mat-icon class="login-title">person</mat-icon>
+    <!-- <mat-icon class="login-title">person</mat-icon> -->
+    <img class="login-title" src="../../../assets/img/logo/flying_whale_logo.png" alt="logo" >
     <div fxLayout="column" class="input-group">
       <mat-form-field>
         <mat-label class="input-label">Email:</mat-label>
@@ -28,7 +30,7 @@
         </div>
       </mat-form-field>
       <mat-form-field>
-        <mat-label class="input-label">Jelszó:</mat-label>
+        <mat-label class="input-label">Password:</mat-label>
         <input
           matInput
           class="input-control"
