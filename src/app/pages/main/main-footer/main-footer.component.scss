@@ -1,7 +1,27 @@
 @import "/src/assets/scss/variables/fonts";
 @import "/src/assets/scss/variables/colors";
-.footer{
+.footer {
   margin-top: auto;
-  height: 30px;
+  height: 150px;
   background-color: $primary-blue;
+  [class^="nav-list"] {
+    list-style: none;
+    [class^="nav-item"] {
+      text-decoration: none;
+      [class^="nav-link"] {
+        color: whitesmoke;
+      }
+    }
+  }
+  .footer-nav {
+    margin-top: 10px;
+  }
+  .nav-item--social {
+    margin: 0 10px;
+  }
+  .copyright {
+    text-align: center;
+    margin-left: 20px;
+    color: whitesmoke;
+  }
 }
