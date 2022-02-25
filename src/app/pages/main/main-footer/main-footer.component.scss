@@ -2,10 +2,11 @@
 @import "/src/assets/scss/variables/colors";
 .footer {
   margin-top: auto;
-  height: 150px;
+  height: 280px;
   background-color: $primary-blue;
   [class^="nav-list"] {
     list-style: none;
+    padding: 0;
     [class^="nav-item"] {
       text-decoration: none;
       [class^="nav-link"] {
@@ -21,7 +22,12 @@
   }
   .copyright {
     text-align: center;
-    margin-left: 20px;
     color: whitesmoke;
   }
+}
+@media screen and(min-width:600px) {
+  .footer{
+    height: 150px;
+  }
+
 }
