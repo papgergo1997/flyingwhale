@@ -3,14 +3,20 @@
 .footer {
   margin-top: auto;
   height: 280px;
-  background-color: $primary-blue;
+  background-color: whitesmoke;
+  // background-color: $primary-blue;
   [class^="nav-list"] {
     list-style: none;
     padding: 0;
     [class^="nav-item"] {
       text-decoration: none;
       [class^="nav-link"] {
-        color: whitesmoke;
+        color: rgb(92, 92, 92);
+        opacity: 80%;
+        // color: whitesmoke;
+      }
+      [class^="nav-link"]:hover {
+        opacity: 100%;
       }
     }
   }
@@ -20,9 +26,11 @@
   .nav-item--social {
     margin: 0 10px;
   }
+
   .copyright {
     text-align: center;
-    color: whitesmoke;
+    color: rgb(92, 92, 92);
+    // color: whitesmoke;
   }
 }
 @media screen and(min-width:600px) {
