@@ -13,7 +13,13 @@
   src: url(../../fonts/Ubuntu/Ubuntu-Regular.ttf);
   font-weight: 400;
 }
+@font-face {
+  font-family: "amatic";
+  src: url(../../fonts/Amatic/AmaticSC-Regular.ttf);
+  font-weight: 400;
+}
 
 $nav-font: "lato", Arial, Helvetica, sans-serif;
 $main-font: "glory", Arial, Helvetica, sans-serif;
 $secondary-font: "ubuntu", Arial, Helvetica, sans-serif;
+$amatic: "amatic", Arial, Helvetica, sans-serif;
