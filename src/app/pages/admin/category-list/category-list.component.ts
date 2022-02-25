@@ -42,10 +42,6 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     this.dialog.open(CategoryEditComponent, dialogConfig);
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
   onDelete(doc: Category): void {
     this.catService.delete(doc);
   }

@@ -1,20 +1,22 @@
 .card {
   border: none;
+  margin: 20px 0;
   .image {
     // width: 400px;
-    margin-top: 20px;
+    margin: 20px 0;
     max-height: 400px;
     max-width: 400px;
-     box-shadow: 0 0 20px rgb(54, 54, 54);
+    box-shadow: 0 0 20px rgb(54, 54, 54);
     // background-size: 100%;
     background-position: center;
     opacity: 100%;
     // transition: background  300ms;
     transition: opacity 300ms;
-    .item-name {
-      border: transparent;
-      background-color: transparent;
-    }
+  }
+  .item-name {
+    margin: 20px 0;
+    border: transparent;
+    background-color: transparent;
   }
   .image:hover {
     cursor: pointer;

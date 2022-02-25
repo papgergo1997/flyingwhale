@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -31,6 +32,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
   @ViewChild('paginator') paginator: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   columns: string[] = ['name', 'category', 'tech', 'date', 'mainImage', 'edit'];
+  form = new FormGroup({
+    filterKey:  new FormControl('')
+  })
 
   constructor(
     private iService: ItemService,
@@ -42,6 +46,9 @@ export class ItemListComponent implements OnInit, OnDestroy {
     this.subscription = this.iService.list$.subscribe((list) => {
       this.dataSource = new MatTableDataSource(list);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.filterPredicate = function (record, filter) {
+        return record.category.toLowerCase().includes(filter.toLocaleLowerCase());
+      };
     });
     this.iService.getAll();
   }
@@ -56,10 +63,14 @@ export class ItemListComponent implements OnInit, OnDestroy {
     this.dialog.open(ItemEditComponent, dialogConfig);
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(): void {
+    const filterValue = this.form.get('filterKey').value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  // applyFilter(event: Event): void {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
   onDelete(doc: Item): void {
     this.iService.delete(doc);
