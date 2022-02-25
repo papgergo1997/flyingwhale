@@ -6,7 +6,10 @@
 >
   <div fxFlex="100" fxLayoutAlign="center" class="logo">
     <!-- <img class="logo-img" src="../../../../assets/img/logo/logo_owl.png" /> -->
-    <img class="logo-img" src="../../../../assets/img/logo/flying_whale_logo.png" />
+    <img
+      class="logo-img"
+      src="../../../../assets/img/logo/flying_whale_logo.png"
+    />
   </div>
 
   <nav class="top-nav">
@@ -91,8 +94,16 @@
         </mat-menu>
       </li>
     </ul>
-    <button class="menu-btn" type="button" mat-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+
   </nav>
+  <div class="menu-btn--container">
+      <button
+        class="menu-btn"
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
 </header>
