@@ -49,16 +49,14 @@
       </nav>
     </div>
   </section>
-  <!-- <ngb-carousel >
-        <ng-template  ngbSlide *ngFor="let image of item.images">
-          <div class="picsum-img-wrapper">
-            <img [src]="image" alt="Random first slide">
-          </div>
-          <div class="carousel-caption">
-
-          </div>
-        </ng-template>
-      </ngb-carousel> -->
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let image of item.images">
+      <div class="picsum-img-wrapper">
+        <img [src]="image" alt="Random first slide" />
+      </div>
+      <div class="carousel-caption"></div>
+    </ng-template>
+  </ngb-carousel>
 
   <div
     class="bonus-img--container"
@@ -69,7 +67,12 @@
     fxFlex.gt-sm="33"
     *ngFor="let image of item.images"
   >
-    <img class="bonus-image" src="{{ image }}" alt="{{image}}"  loading="lazy"/>
+    <img
+      class="bonus-image"
+      src="{{ image }}"
+      alt="{{ image }}"
+      loading="lazy"
+    />
   </div>
 
   <!-- <app-item-card-container
