@@ -1,31 +1,19 @@
 @import "/src/assets/scss/variables/fonts";
 @import "/src/assets/scss/variables/colors";
 
-.left {
+.text-container {
   margin-top: 20px;
   font-family: $amatic;
   .about-title {
     font-family: $amatic;
   }
-  .about-desc {
-    font-family: $amatic;
+  [class^="about-desc"] {
+    text-align: justify;
     line-height: 25px;
     font-size: 25px;
   }
-}
-.about-img--container{
-  .about-img {
-  margin-top: 70px;
-  max-width: 100%;
-}
-}
-
-.right {
-  margin-top: 20px;
-  font-family: $amatic;
-  .about-desc {
-    line-height: 25px;
-    font-size: 25px;
+  .about-desc-right {
+    margin-top: 10px;
   }
   .social-nav {
     .nav-social {
@@ -36,7 +24,7 @@
         [class$="-link"] {
           width: 20px;
           height: 20px;
-          line-height: 20px;
+          line-height: 19px;
           font-size: 13px;
           border: transparent;
           border-radius: 5px;
@@ -50,7 +38,7 @@
             rgb(255, 0, 0)
           );
           i {
-            margin: -3px 0 0 -1.6px;
+            margin-left: -1.6px;
           }
         }
         .face-link {
@@ -66,16 +54,22 @@
     }
   }
 }
-
-
+.about-img--container {
+  .about-img {
+    margin-top: 10px;
+    max-width: 100%;
+  }
+}
 @media screen and(min-width: 600px) {
-  .left {
-    margin: 30px 0;
+  .text-container {
+    .about-desc-right {
+      margin-top: 49px;
+    }
   }
-  .right {
-    margin: 75px 0;
-  }
-  .about-img{
-    max-height: 400px;
+  .about-img--container {
+    .about-img {
+      margin-top: 80px;
+      max-height: 400px;
+    }
   }
 }
