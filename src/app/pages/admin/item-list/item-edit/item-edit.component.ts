@@ -103,6 +103,7 @@ export class ItemEditComponent implements OnInit {
     } else {
       this.form.patchValue({
         images: this.imageURLs,
+        imageName: this.imageNames,
       });
       this.iService.update(this.form.getRawValue());
       this.dialogRef.close();
@@ -113,6 +114,11 @@ export class ItemEditComponent implements OnInit {
        this.phUService.deleteImageFrStAndDB(name, key);
       this.imageURLs.splice(index, 1)
       this.imageNames.splice(index+1, 1)
+       this.form.patchValue({
+         images: this.imageURLs,
+         imageName: this.imageNames,
+       });
+       this.iService.update(this.form.getRawValue());
     }
 
   }
