@@ -64,7 +64,6 @@ export class ItemEditComponent implements OnInit {
     private techService: TechService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
-    console.log(data.images)
     this.form.patchValue(data);
     if (data.id != '0' && data.images != '' && data.images != undefined) {
       this.imageURLs = data.images;
@@ -73,9 +72,8 @@ export class ItemEditComponent implements OnInit {
       this.imageNames = data.imageName;
     }
     if(data.category == 'bags'){
-      this.isbag = true
-    }
-    console.log(data.imageName)
+      this.isbag = true    }
+
   }
 
   ngOnInit(): void {
@@ -86,7 +84,6 @@ export class ItemEditComponent implements OnInit {
     this.catService.list$.subscribe((list) => (this.categoryOpt = list));
     this.techService.list$.subscribe((list) => (this.techOpt = list));
     this.phUService.list$.subscribe((list) => (this.list$ = list));
-    console.log(this.form.get('images').value[1]);
   }
 
   onSubmit(): void {
@@ -96,7 +93,6 @@ export class ItemEditComponent implements OnInit {
         imageName: this.imageNames,
         images: this.imageURLs,
       });
-      console.log(this.imageIds, this.imageNames, this.imageURLs);
       this.iService.create(this.form.value);
       this.dialogRef.close();
       this.progress = 0;

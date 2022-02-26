@@ -35,14 +35,12 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (resData) => {
-          console.log(resData);
           this.isLoading = false;
           // localStorage.setItem('user', JSON.stringify(this.currentUser));
           // JSON.parse(localStorage.getItem('user')||'null');
           this.router.navigate(['main/about'])
         },
         (errorMessage) => {
-          console.log(errorMessage);
           this.error = errorMessage
           this.isLoading = false;
         }
