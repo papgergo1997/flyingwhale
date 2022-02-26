@@ -58,14 +58,15 @@
       }
     }
   }
-  .picsum-img-wrapper{
-
-    img{
-      height: 350px;
+  .carousel {
+    img {
+      max-height: 300px;
+      max-width: 400px;
     }
   }
   .bonus-img--container {
     .bonus-image {
+      display: none;
       margin: 20px;
       max-height: 300px;
       max-width: 400px;
@@ -91,7 +92,13 @@
 }
 
 @media screen and (min-width: 600px) {
-  .drawer {
+
+  .carousel {
     display: none;
+  }
+  .bonus-img--container{
+    .bonus-image{
+      display: block !important;
+    }
   }
 }

@@ -51,7 +51,7 @@
   </section>
   <ngb-carousel>
     <ng-template ngbSlide *ngFor="let image of item.images">
-      <div class="picsum-img-wrapper">
+      <div class="carousel">
         <img [src]="image" alt="Random first slide" />
       </div>
       <div class="carousel-caption"></div>
@@ -71,7 +71,6 @@
       class="bonus-image"
       src="{{ image }}"
       alt="{{ image }}"
-      loading="lazy"
     />
   </div>
 

@@ -54,16 +54,14 @@
           </nav>
         </div>
       </section>
-      <!-- <ngb-carousel >
-        <ng-template  ngbSlide *ngFor="let image of item.images">
-          <div class="picsum-img-wrapper">
-            <img [src]="image" alt="Random first slide">
+      <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let image of item.images">
+          <div class="carousel">
+            <img [src]="image" alt="Random first slide" />
           </div>
-          <div class="carousel-caption">
-
-          </div>
+          <div class="carousel-caption"></div>
         </ng-template>
-      </ngb-carousel> -->
+      </ngb-carousel>
 
       <div
         class="bonus-img--container"
@@ -75,7 +73,7 @@
         *ngFor="let image of item.images"
       >
 
-        <img class="bonus-image" src="{{image}}" alt="" srcset="">
+        <img class="bonus-image" src="{{image}}" alt="bonus image" >
 
       </div>
 
