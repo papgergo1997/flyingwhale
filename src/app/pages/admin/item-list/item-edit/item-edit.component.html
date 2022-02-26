@@ -135,12 +135,13 @@
           fxLayout="row wrap"
           *ngIf="imageURLs != []"
         >
-          <div fxLayout="column" *ngFor="let img of imageURLs">
+          <div fxLayout="column" *ngFor="let img of imageURLs; let i = index">
             <img
               class="images"
               src="{{ img }}"
               alt="{{ form.get('name').value }}"
             />
+           <mat-icon class="delete-trash" (click)="onDelete(imageNames[i+1], '', i)">delete</mat-icon>
           </div>
         </div>
 

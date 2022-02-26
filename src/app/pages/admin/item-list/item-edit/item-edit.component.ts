@@ -20,7 +20,7 @@ import { Tech } from 'src/app/model/tech';
 })
 export class ItemEditComponent implements OnInit {
   //FOR CROPPER
-  @Input() isbag: boolean = false
+  isbag: boolean ;
   imageChangedEvent: any;
   base64: any;
   //
@@ -72,6 +72,9 @@ export class ItemEditComponent implements OnInit {
     if (data.id != '0' && data.images != '' && data.images != undefined) {
       this.imageNames = data.imageName;
     }
+    if(data.category == 'bags'){
+      this.isbag = true
+    }
     console.log(data.imageName)
   }
 
@@ -104,6 +107,14 @@ export class ItemEditComponent implements OnInit {
       this.iService.update(this.form.getRawValue());
       this.dialogRef.close();
     }
+  }
+  onDelete(name: string, key: string, index: any): void{
+    if(confirm()){
+       this.phUService.deleteImageFrStAndDB(name, key);
+      this.imageURLs.splice(index, 1)
+      this.imageNames.splice(index+1, 1)
+    }
+
   }
 
   onUpload(main: boolean): void {

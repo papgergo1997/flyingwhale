@@ -47,6 +47,15 @@
 .images{
   max-width: 50px;
 }
+.delete-trash{
+  position: absolute;
+  color: $primary-red;
+  opacity: 90%;
+}
+.delete-trash:hover{
+  cursor: pointer;
+  opacity: 100%;
+}
 .file{
   margin-top: auto;
   width: 90%;
