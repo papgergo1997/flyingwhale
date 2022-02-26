@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -20,6 +20,7 @@ import { Tech } from 'src/app/model/tech';
 })
 export class ItemEditComponent implements OnInit {
   //FOR CROPPER
+  @Input() isbag: boolean = false
   imageChangedEvent: any;
   base64: any;
   //
@@ -51,7 +52,8 @@ export class ItemEditComponent implements OnInit {
     imageName: new FormControl(''),
     newCategory: new FormControl(''),
     newTech: new FormControl(''),
-    instaLink: new FormControl('')
+    instaLink: new FormControl(''),
+    size: new FormControl('')
   });
 
   constructor(
@@ -67,6 +69,10 @@ export class ItemEditComponent implements OnInit {
     if (data.id != '0' && data.images != '' && data.images != undefined) {
       this.imageURLs = data.images;
     }
+    if (data.id != '0' && data.images != '' && data.images != undefined) {
+      this.imageNames = data.imageName;
+    }
+    console.log(data.imageName)
   }
 
   ngOnInit(): void {
@@ -191,6 +197,13 @@ export class ItemEditComponent implements OnInit {
   // imageCropped(event: CroppedEvent): void {
   //   this.selectedPreviewFiles = event.file;
   // }
+  changeIsbag(){
+    if(this.form.get('category').value == 'bags'){
+      this.isbag = true
+    } else {
+      this.isbag = false
+    }
+  }
 
   createNewCat(): void {
     if (this.form.get('newCategory').value != null) {

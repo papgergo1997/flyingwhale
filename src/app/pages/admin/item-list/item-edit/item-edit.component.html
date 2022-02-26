@@ -46,12 +46,20 @@
           formControlName="instaLink"
         />
       </mat-form-field>
+      <mat-form-field *ngIf="isbag">
+        <input
+          matInput
+          placeholder="Size"
+          formControlName="size"
+        />
+      </mat-form-field>
       <div fxFlex>
         <mat-form-field>
           <mat-select
             matInput
             placeholder="Category"
             formControlName="category"
+            (selectionChange)="changeIsbag()"
           >
             <mat-option *ngFor="let opt of categoryOpt" [value]="opt.name">{{
               opt.name
