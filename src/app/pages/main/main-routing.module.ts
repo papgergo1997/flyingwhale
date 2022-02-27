@@ -10,6 +10,7 @@ import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.c
 import { LogosComponent } from './logos/logos.component';
 import { PortraitsComponent } from './portraits/portraits.component';
 import { PortraitPageComponent } from './portraits/portrait-page/portrait-page.component';
+import { LogoPageComponent } from './logos/logo-page/logo-page.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'greet-print', component: GreetPrintComponent },
       { path: 'greet-print/:id', component: ItemPageComponent },
       { path: 'logos', component: LogosComponent },
+      { path: 'logos/:id', component: LogoPageComponent },
       { path: 'about', component: AboutComponent },
     ],
   },

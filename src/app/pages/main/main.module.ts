@@ -30,10 +30,11 @@ import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.c
 import { LogosComponent } from './logos/logos.component';
 import { PortraitsComponent } from './portraits/portraits.component';
 import { PortraitPageComponent } from './portraits/portrait-page/portrait-page.component';
+import { LogoPageComponent } from './logos/logo-page/logo-page.component';
 
 
 @NgModule({
-  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent, PortraitsComponent, PortraitPageComponent],
+  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent, PortraitsComponent, PortraitPageComponent, LogoPageComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
