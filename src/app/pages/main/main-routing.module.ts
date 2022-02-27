@@ -13,6 +13,7 @@ import { PortraitPageComponent } from './portraits/portrait-page/portrait-page.c
 import { LogoPageComponent } from './logos/logo-page/logo-page.component';
 import { IllustrationsComponent } from './illustrations/illustrations.component';
 import { IllustrationPageComponent } from './illustrations/illustration-page/illustration-page.component';
+import { BagPageComponent } from './bags/bag-page/bag-page.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: 'calendars', component: CalendarsComponent },
       { path: 'calendars/:id', component: CalendarPageComponent },
       { path: 'bags', component: BagsComponent },
-      { path: 'bags/:id', component: ItemPageComponent },
+      { path: 'bags/:id', component: BagPageComponent },
       { path: 'greet-print', component: GreetPrintComponent },
       { path: 'greet-print/:id', component: ItemPageComponent },
       { path: 'logos', component: LogosComponent },
