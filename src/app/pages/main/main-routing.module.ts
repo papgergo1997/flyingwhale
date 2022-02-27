@@ -11,12 +11,16 @@ import { LogosComponent } from './logos/logos.component';
 import { PortraitsComponent } from './portraits/portraits.component';
 import { PortraitPageComponent } from './portraits/portrait-page/portrait-page.component';
 import { LogoPageComponent } from './logos/logo-page/logo-page.component';
+import { IllustrationsComponent } from './illustrations/illustrations.component';
+import { IllustrationPageComponent } from './illustrations/illustration-page/illustration-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
     children: [
+      { path: 'illustrations', component: IllustrationsComponent },
+      { path: 'illustrations/:id', component: IllustrationPageComponent },
       { path: 'portraits', component: PortraitsComponent },
       { path: 'portraits/:id', component: PortraitPageComponent },
       { path: 'calendars', component: CalendarsComponent },
