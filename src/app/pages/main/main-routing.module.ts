@@ -14,6 +14,7 @@ import { LogoPageComponent } from './logos/logo-page/logo-page.component';
 import { IllustrationsComponent } from './illustrations/illustrations.component';
 import { IllustrationPageComponent } from './illustrations/illustration-page/illustration-page.component';
 import { BagPageComponent } from './bags/bag-page/bag-page.component';
+import { TShirtsComponent } from './t-shirts/t-shirts.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'greet-print/:id', component: ItemPageComponent },
       { path: 'logos', component: LogosComponent },
       { path: 'logos/:id', component: LogoPageComponent },
+      { path: 't-shirts', component: TShirtsComponent },
       { path: 'about', component: AboutComponent },
     ],
   },
