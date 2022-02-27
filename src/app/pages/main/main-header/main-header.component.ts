@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -8,14 +9,16 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class MainHeaderComponent implements OnInit {
   @Input() drawer: any;
+  counter: number = 0;
 
   constructor(private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-
+   this.authService.expirationCounter.subscribe((num)=>{
+     this.counter = num
+   })
   }
-
   isLoggedIn(){
     return this.authService.isLoggedIn;
   }

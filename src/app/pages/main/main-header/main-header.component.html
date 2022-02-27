@@ -89,6 +89,7 @@
         <button mat-button routerLink="/login" class="link-top">Login</button>
       </li>
       <li *ngIf="isLoggedIn()" class="item-top--admin">
+        <label for="">{{counter }}</label>
         <button mat-button [matMenuTriggerFor]="menu" class="link-top">
           <mat-icon>person</mat-icon>
         </button>

@@ -13,6 +13,11 @@ export class AuthService {
   currentUser = new BehaviorSubject<User>(null);
 
   private expirationTimer: any;
+  private interval: any;
+  num: number =60;
+  expirationCounter: BehaviorSubject<any> = new BehaviorSubject<any>(
+    null
+  );
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -40,21 +45,25 @@ export class AuthService {
   }
 
   logout(): void {
-    this.currentUser.next(null)
-    localStorage.removeItem('user')
-    this.router.navigate(['main/about'])
-    if (this.expirationTimer){
-      clearTimeout(this.expirationTimer)
+    this.currentUser.next(null);
+    localStorage.removeItem('user');
+    this.router.navigate(['main/about']);
+    if (this.expirationTimer) {
+      clearTimeout(this.expirationTimer);
     }
     this.expirationTimer = null;
   }
 
   autoLogout(expirationDuration: number): void {
-    this.expirationTimer = setTimeout(()=> this.logout(), expirationDuration);
+    this.expirationTimer = setTimeout(() => this.logout(), expirationDuration);
+    this.interval = setInterval(()=>{
+      this.num = this.num -1
+      this.expirationCounter.next(this.num)
+    }, 1000)
   }
 
-  get isLoggedIn(): boolean{
-    const user = JSON.parse(localStorage.getItem('user')|| 'null');
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
     return user !== null ? true : false;
   }
 
@@ -68,7 +77,7 @@ export class AuthService {
     const user = new User(email, userId, token, expirationDate);
     this.currentUser.next(user);
 
-    this.autoLogout(expiresIn * 1000)
+    this.autoLogout(expiresIn * 1000);
     localStorage.setItem('user', JSON.stringify(user));
   }
 
