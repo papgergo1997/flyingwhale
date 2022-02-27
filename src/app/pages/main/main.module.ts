@@ -29,10 +29,11 @@ import { CommonModule } from '@angular/common';
 import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.component';
 import { LogosComponent } from './logos/logos.component';
 import { PortraitsComponent } from './portraits/portraits.component';
+import { PortraitPageComponent } from './portraits/portrait-page/portrait-page.component';
 
 
 @NgModule({
-  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent, PortraitsComponent],
+  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent, PortraitsComponent, PortraitPageComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

@@ -9,20 +9,22 @@ import { MainComponent } from './main.component';
 import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.component';
 import { LogosComponent } from './logos/logos.component';
 import { PortraitsComponent } from './portraits/portraits.component';
+import { PortraitPageComponent } from './portraits/portrait-page/portrait-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
     children: [
-      {path: 'portraits', component: PortraitsComponent},
+      { path: 'portraits', component: PortraitsComponent },
+      { path: 'portraits/:id', component: PortraitPageComponent },
       { path: 'calendars', component: CalendarsComponent },
       { path: 'calendars/:id', component: CalendarPageComponent },
       { path: 'bags', component: BagsComponent },
       { path: 'bags/:id', component: ItemPageComponent },
       { path: 'greet-print', component: GreetPrintComponent },
       { path: 'greet-print/:id', component: ItemPageComponent },
-      {path: 'logos', component: LogosComponent},
+      { path: 'logos', component: LogosComponent },
       { path: 'about', component: AboutComponent },
     ],
   },
