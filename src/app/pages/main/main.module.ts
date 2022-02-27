@@ -35,10 +35,11 @@ import { IllustrationsComponent } from './illustrations/illustrations.component'
 import { IllustrationPageComponent } from './illustrations/illustration-page/illustration-page.component';
 import { BagPageComponent } from './bags/bag-page/bag-page.component';
 import { TShirtsComponent } from './t-shirts/t-shirts.component';
+import { TShirtPageComponent } from './t-shirts/t-shirt-page/t-shirt-page.component';
 
 
 @NgModule({
-  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent, PortraitsComponent, PortraitPageComponent, LogoPageComponent, IllustrationsComponent, IllustrationPageComponent, BagPageComponent, TShirtsComponent],
+  declarations: [AboutComponent, ItemCardComponent, ItemCardContainerComponent, MainHeaderComponent, MainSideNavComponent, ItemPageComponent, CategoryFilterPipe, GreetPrintComponent, BagsComponent, MainFooterComponent, CalendarsComponent, MainComponent, CalendarPageComponent, LogosComponent, PortraitsComponent, PortraitPageComponent, LogoPageComponent, IllustrationsComponent, IllustrationPageComponent, BagPageComponent, TShirtsComponent, TShirtPageComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

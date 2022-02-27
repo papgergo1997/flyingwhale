@@ -15,6 +15,7 @@ import { IllustrationsComponent } from './illustrations/illustrations.component'
 import { IllustrationPageComponent } from './illustrations/illustration-page/illustration-page.component';
 import { BagPageComponent } from './bags/bag-page/bag-page.component';
 import { TShirtsComponent } from './t-shirts/t-shirts.component';
+import { TShirtPageComponent } from './t-shirts/t-shirt-page/t-shirt-page.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: 'logos', component: LogosComponent },
       { path: 'logos/:id', component: LogoPageComponent },
       { path: 't-shirts', component: TShirtsComponent },
+      { path: 't-shirts/:id', component: TShirtPageComponent },
       { path: 'about', component: AboutComponent },
     ],
   },
