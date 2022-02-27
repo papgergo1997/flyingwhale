@@ -8,12 +8,14 @@ import { CalendarsComponent } from './calendars/calendars.component';
 import { MainComponent } from './main.component';
 import { CalendarPageComponent } from './calendars/calendar-page/calendar-page.component';
 import { LogosComponent } from './logos/logos.component';
+import { PortraitsComponent } from './portraits/portraits.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
     children: [
+      {path: 'portraits', component: PortraitsComponent},
       { path: 'calendars', component: CalendarsComponent },
       { path: 'calendars/:id', component: CalendarPageComponent },
       { path: 'bags', component: BagsComponent },
