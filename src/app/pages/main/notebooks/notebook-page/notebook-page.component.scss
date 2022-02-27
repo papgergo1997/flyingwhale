@@ -1,0 +1,90 @@
+@import "/src/assets/scss/variables/fonts";
+@import "/src/assets/scss/variables/colors";
+
+.back-btn {
+  margin: 20px;
+}
+.calendar-container {
+  min-width: 80vw;
+  .main-img {
+    max-height: 280px;
+    max-width: 400px;
+    margin: 20px;
+    box-shadow: 0 0 20px rgb(48, 48, 48);
+  }
+  .description {
+    margin: 20px;
+    .social-nav {
+      .nav-social {
+        padding: 0;
+        .social-nav--item {
+          margin: 5px;
+          list-style: none;
+          .insta-link {
+            background-image: linear-gradient(
+              120deg,
+              rgb(116, 2, 131),
+              rgb(255, 0, 0)
+            );
+            border: transparent;
+            border-radius: 5px;
+            color: whitesmoke;
+            font-size: 13px;
+            height: 20px;
+            line-height: 19px;
+            opacity: 80%;
+            text-decoration: none;
+            transition: opacity 300ms;
+            width: 20px;
+            i {
+              margin-left: -1.6px;
+            }
+          }
+          .insta-link:hover {
+            opacity: 100%;
+          }
+          .face-link {
+            width: 20px;
+            height: 20px;
+            line-height: 19px;
+            font-size: 13px;
+            border: transparent;
+            border-radius: 5px;
+            opacity: 80%;
+            transition: opacity 300ms;
+            text-decoration: none;
+            color: whitesmoke;
+            background-color: rgb(5, 61, 146);
+          }
+          .face-link:hover {
+            opacity: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.carousel {
+  img {
+    max-height: 320px;
+    max-width: 100%;
+  }
+}
+.bonus-img--container {
+  .bonus-image {
+    display: none;
+    margin: 20px;
+    max-height: 300px;
+    max-width: 400px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .carousel {
+    display: none;
+  }
+  .bonus-img--container {
+    .bonus-image {
+      display: block;
+    }
+  }
+}
