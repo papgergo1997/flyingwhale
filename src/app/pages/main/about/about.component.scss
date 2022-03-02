@@ -52,7 +52,7 @@
             margin-left: -1.6px;
           }
         }
-        .insta-link:hover{
+        .insta-link:hover {
           opacity: 100%;
         }
         .face-link {
@@ -68,7 +68,7 @@
           color: whitesmoke;
           background-color: rgb(5, 61, 146);
         }
-        .face-link:hover{
+        .face-link:hover {
           opacity: 100%;
         }
         .linked-link {
@@ -87,7 +87,7 @@
             margin: -3px 0 0 -1.6px;
           }
         }
-        .linked-link:hover{
+        .linked-link:hover {
           opacity: 100%;
         }
       }
@@ -102,6 +102,9 @@
 }
 @media screen and(min-width: 600px) {
   .text-container {
+    [class^="about-desc"] {
+      text-align: left;
+    }
     .about-desc-right {
       margin-top: 49px;
     }

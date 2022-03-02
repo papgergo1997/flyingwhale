@@ -13,6 +13,17 @@
     box-shadow: 0 0 20px rgb(48, 48, 48);
   }
   .description {
+    h1 {
+      font-size: 30px;
+      font-family: $amatic;
+    }
+    h2 {
+      font-size: 25px;
+      font-family: $amatic;
+    }
+    font-size: 20px;
+    font-family: $amatic;
+    text-align: justify;
     margin: 20px;
     .social-nav {
       .nav-social {
