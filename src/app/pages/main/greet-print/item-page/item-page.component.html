@@ -22,6 +22,7 @@
         <img
           class="main-img"
           src="{{ item.mainImage }}"
+          (contextmenu)="onRightClick($event)"
           alt="{{ item.name }}"
         />
         <div fxLayout="column" class="description">
@@ -73,7 +74,7 @@
         *ngFor="let image of item.images"
       >
 
-        <img class="bonus-image" src="{{image}}" alt="bonus image" >
+        <img class="bonus-image" src="{{image}}" (contextmenu)="onRightClick($event)" alt="bonus image" >
 
       </div>
 

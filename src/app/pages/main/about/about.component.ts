@@ -13,5 +13,8 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onRightClick(event: any){
+    return false
+  }
 
 }

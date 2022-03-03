@@ -1,5 +1,5 @@
 <div *ngIf="item" class="card" fxLayout="column" fxLayoutAlign="center center">
-  <img class="image" src="{{item.mainImage}}" alt="{{item.name}}" >
+  <img class="image" src="{{item.mainImage}}" (contextmenu)="onRightClick($event)" alt="{{item.name}}" >
   <!-- <div class="image" style="background-image: url({{item.mainImage}});"></div> -->
   <div class="item-name">{{item.name}}</div>
 </div>

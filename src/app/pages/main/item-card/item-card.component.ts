@@ -15,5 +15,8 @@ export class ItemCardComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  onRightClick(event: any){
+    return false
+  }
 
 }

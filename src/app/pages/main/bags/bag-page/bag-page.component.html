@@ -18,7 +18,7 @@
     fxLayout="column"
     fxLayout.gt-xs="row"
   >
-    <img class="main-img" src="{{ item.mainImage }}" alt="{{ item.name }}" />
+    <img class="main-img" src="{{ item.mainImage }}" (contextmenu)="onRightClick($event)" alt="{{ item.name }}" />
     <div fxLayout="column" class="description">
       <h1>{{ item.name }}</h1>
       <p>{{ item.date }}</p>
@@ -71,6 +71,7 @@
   >
     <img
       class="bonus-image"
+      (contextmenu)="onRightClick($event)"
       src="{{ image }}"
       alt="{{ image }}"
     />

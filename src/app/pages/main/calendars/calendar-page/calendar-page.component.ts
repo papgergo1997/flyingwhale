@@ -24,6 +24,8 @@ export class CalendarPageComponent implements OnInit {
     )
   }
 
-
+  onRightClick(event: any){
+    return false
+  }
 
 }

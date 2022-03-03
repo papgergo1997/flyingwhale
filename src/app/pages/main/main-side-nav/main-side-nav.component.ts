@@ -22,5 +22,8 @@ export class MainSideNavComponent implements OnInit {
   logout(): void{
     this.authService.logout();
   }
+  onRightClick(event: any){
+    return false
+  }
 
 }

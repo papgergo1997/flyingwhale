@@ -23,5 +23,8 @@ export class NotebookPageComponent implements OnInit {
         return this.iService.get(params.id)})
     )
   }
+  onRightClick(event: any){
+    return false
+  }
 
 }
